@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Notes Sharing Portal | Explore & Download Notes</title>
+  <meta name="description" content="Browse, search, and download 14+ comprehensive lecture notes across 8 subjects and 8 semesters. Includes PDF, DOCX, and PPT study materials.">
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Portal Styles -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="container nav-wrapper">
+      <a href="dashboard.html" class="brand-logo">
+        <div class="brand-icon-box">
+          <i class="fa-solid fa-graduation-cap"></i>
+        </div>
+        <div class="brand-title">
+          <span class="brand-title-main">Student Notes Portal</span>
+          <span class="brand-title-sub">Cloud Computing Academic Project</span>
+        </div>
+      </a>
+
+      <!-- Mobile Menu Button -->
+      <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle navigation menu" onclick="document.getElementById('mainNavLinks').classList.toggle('open')">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <!-- Navigation Links -->
+      <nav>
+        <ul class="nav-links" id="mainNavLinks">
+          <li><a href="dashboard.html" class="nav-link"><i class="fa-solid fa-house"></i> Dashboard</a></li>
+          <li><a href="notes.html" class="nav-link active"><i class="fa-solid fa-book-open"></i> Explore Notes</a></li>
+          <li><a href="upload.html" class="nav-link"><i class="fa-solid fa-cloud-arrow-up"></i> Upload Notes</a></li>
+        </ul>
+      </nav>
+
+      <!-- User Profile or Sign In Button -->
+      <div id="navUserSection"></div>
+    </div>
+  </header>
+
+  <!-- Page Header -->
+  <section class="notes-page-header">
+    <div class="container">
+      <span class="badge badge-purple" style="background: rgba(255, 255, 255, 0.2); color: #fff; border-color: rgba(255,255,255,0.3); margin-bottom: 0.5rem;">
+        <i class="fa-solid fa-book-open-reader"></i> Comprehensive Study Library
+      </span>
+      <h1>Explore & Download Course Notes</h1>
+      <p>Instant search, filter by discipline, preview lecture transcripts, and download verified study materials.</p>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="container">
+      
+      <!-- Filter & Search Control Panel -->
+      <section class="filter-panel" aria-label="Notes Filtering Controls">
+        <div class="filter-grid">
+          <!-- 1. Search Query -->
+          <div class="form-group" style="margin-bottom: 0;">
+            <label class="form-label" for="searchNotesInput"><i class="fa-solid fa-magnifying-glass"></i> Search by Keyword</label>
+            <div class="input-with-icon">
+              <i class="fa-solid fa-magnifying-glass field-icon"></i>
+              <input type="text" id="searchNotesInput" class="form-control" placeholder="Search by title, subject, topics (e.g. Docker, Calculus)...">
+            </div>
+          </div>
+
+          <!-- 2. Subject Filter (8 subjects) -->
+          <div class="form-group" style="margin-bottom: 0;">
+            <label class="form-label" for="filterSubject"><i class="fa-solid fa-layer-group"></i> Filter by Subject</label>
+            <select id="filterSubject" class="form-select">
+              <option value="all">All Subjects (8 Disciplines)</option>
+            </select>
+          </div>
+
+          <!-- 3. Semester Filter (Sem 1 to Sem 8) -->
+          <div class="form-group" style="margin-bottom: 0;">
+            <label class="form-label" for="filterSemester"><i class="fa-solid fa-calendar-days"></i> Semester</label>
+            <select id="filterSemester" class="form-select">
+              <option value="all">All Semesters</option>
+              <option value="Semester 1">Semester 1</option>
+              <option value="Semester 2">Semester 2</option>
+              <option value="Semester 3">Semester 3</option>
+              <option value="Semester 4">Semester 4</option>
+              <option value="Semester 5">Semester 5</option>
+              <option value="Semester 6">Semester 6</option>
+              <option value="Semester 7">Semester 7</option>
+              <option value="Semester 8">Semester 8</option>
+            </select>
+          </div>
+
+          <!-- 4. Sort By -->
+          <div class="form-group" style="margin-bottom: 0;">
+            <label class="form-label" for="sortBySelect"><i class="fa-solid fa-arrow-down-wide-short"></i> Sort By</label>
+            <select id="sortBySelect" class="form-select">
+              <option value="newest">Newest First</option>
+              <option value="downloads">Most Downloaded</option>
+              <option value="alpha">Title (A - Z)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- File Type Filter Buttons & Clear Filters -->
+        <div class="filter-filetypes">
+          <span style="font-size: 0.825rem; font-weight: 600; color: var(--text-muted); margin-right: 0.5rem;">
+            File Format:
+          </span>
+          <button type="button" class="filetype-filter-btn active" data-type="all">
+            <i class="fa-solid fa-border-all"></i> All Formats
+          </button>
+          <button type="button" class="filetype-filter-btn" data-type="PDF">
+            <i class="fa-solid fa-file-pdf" style="color: #dc2626;"></i> PDF Documents
+          </button>
+          <button type="button" class="filetype-filter-btn" data-type="DOCX">
+            <i class="fa-solid fa-file-word" style="color: #2563eb;"></i> Word (DOCX)
+          </button>
+          <button type="button" class="filetype-filter-btn" data-type="PPT">
+            <i class="fa-solid fa-file-powerpoint" style="color: #ea580c;"></i> Presentations (PPT)
+          </button>
+
+          <button type="button" class="btn btn-secondary btn-sm" id="clearFiltersBtn" style="margin-left: auto;">
+            <i class="fa-solid fa-rotate-left"></i> Reset Filters
+          </button>
+        </div>
+      </section>
+
+      <!-- Results Count Bar -->
+      <div class="results-count-bar">
+        <span id="resultsCountDisplay">Showing <strong>14</strong> study notes</span>
+        <div style="font-size: 0.8rem; color: var(--text-muted);">
+          <i class="fa-solid fa-circle-info"></i> Click <strong>Preview</strong> for lecture outlines or <strong>Download</strong> for full files
+        </div>
+      </div>
+
+      <!-- Notes Grid -->
+      <section class="notes-grid" id="notesCatalogGrid" aria-label="Available Study Notes">
+        <!-- Injected dynamically via notes.js -->
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Note Preview Modal (Shared Viewer) -->
+  <div class="modal-overlay" id="previewModalOverlay" onclick="if(event.target === this) closeNotePreview()">
+    <div class="modal-container" role="dialog" aria-modal="true">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-file-lines" style="color: var(--primary);"></i> Document Preview</h3>
+        <button class="modal-close-btn" onclick="closeNotePreview()" aria-label="Close Preview">&times;</button>
+      </div>
+      <div class="modal-body">
+        <h2 id="modalNoteTitle" style="font-size: 1.35rem; font-weight: 800; margin-bottom: 0.75rem;"></h2>
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem;">
+          <span class="badge badge-purple" id="modalNoteSubject"></span>
+          <span class="badge badge-primary" id="modalNoteSemester"></span>
+          <span class="badge badge-pdf" id="modalNoteType"></span>
+        </div>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">
+          Contributed by: <strong id="modalNoteAuthor" style="color: var(--text-main);"></strong>
+        </p>
+
+        <div style="font-weight: 700; font-size: 0.95rem; margin-bottom: 0.5rem;">
+          <i class="fa-solid fa-book-open"></i> Note Content Transcript:
+        </div>
+        <div class="preview-viewer-box" id="modalPreviewContent"></div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary btn-sm" onclick="closeNotePreview()">Close</button>
+        <button class="btn btn-primary btn-sm" id="modalDownloadBtn">
+          <i class="fa-solid fa-download"></i> Download Note File
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Portal Footer -->
+  <footer class="portal-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h4><i class="fa-solid fa-graduation-cap"></i> Student Notes Sharing Portal</h4>
+          <p>An academic cloud computing curriculum project engineered using HTML5, CSS3, and vanilla JavaScript. Provides client-side cataloging, peer-to-peer revision notes sharing, and instant browser downloads.</p>
+        </div>
+        <div class="footer-col">
+          <h5>Core Disciplines</h5>
+          <ul class="footer-links">
+            <li><a href="notes.html?subject=Cloud Computing">Cloud Computing</a></li>
+            <li><a href="notes.html?subject=Computer Science">Computer Science</a></li>
+            <li><a href="notes.html?subject=Data Science">Data Science</a></li>
+            <li><a href="notes.html?subject=Information Technology">Information Technology</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Quick Access</h5>
+          <ul class="footer-links">
+            <li><a href="dashboard.html">Student Dashboard</a></li>
+            <li><a href="notes.html">Browse Notes Library</a></li>
+            <li><a href="upload.html">Upload & Share Notes</a></li>
+            <li><a href="dashboard.html#cloudSection">Cloud Computing Project Info</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Demonstration Mode</h5>
+          <p style="font-size: 0.8rem; line-height: 1.5; color: #94a3b8; margin-bottom: 0.75rem;">
+            This application is a 100% frontend implementation. User accounts and notes are safely sandboxed in your browser's LocalStorage and IndexedDB.
+          </p>
+          <span class="badge badge-purple"><i class="fa-solid fa-circle-check"></i> Ready for Netlify / Vercel</span>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; 2026 Student Notes Sharing Portal. Designed for Academic Excellence.</div>
+        <div>Engineered with Pure Vanilla Web Technologies.</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/db.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/notes.js"></script>
+</body>
+</html>

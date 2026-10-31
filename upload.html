@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Notes Sharing Portal | Upload & Share Notes</title>
+  <meta name="description" content="Share your semester lecture notes, study summaries, and seminar slides. Browser-side persistent storage with IndexedDB simulation.">
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Portal Styles -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="container nav-wrapper">
+      <a href="dashboard.html" class="brand-logo">
+        <div class="brand-icon-box">
+          <i class="fa-solid fa-graduation-cap"></i>
+        </div>
+        <div class="brand-title">
+          <span class="brand-title-main">Student Notes Portal</span>
+          <span class="brand-title-sub">Cloud Computing Academic Project</span>
+        </div>
+      </a>
+
+      <!-- Mobile Menu Button -->
+      <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle navigation menu" onclick="document.getElementById('mainNavLinks').classList.toggle('open')">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <!-- Navigation Links -->
+      <nav>
+        <ul class="nav-links" id="mainNavLinks">
+          <li><a href="dashboard.html" class="nav-link"><i class="fa-solid fa-house"></i> Dashboard</a></li>
+          <li><a href="notes.html" class="nav-link"><i class="fa-solid fa-book-open"></i> Explore Notes</a></li>
+          <li><a href="upload.html" class="nav-link active"><i class="fa-solid fa-cloud-arrow-up"></i> Upload Notes</a></li>
+        </ul>
+      </nav>
+
+      <!-- User Profile or Sign In Button -->
+      <div id="navUserSection"></div>
+    </div>
+  </header>
+
+  <!-- Page Header -->
+  <section class="notes-page-header" style="background: linear-gradient(135deg, #4338ca 0%, #7c3aed 100%);">
+    <div class="container">
+      <span class="badge badge-purple" style="background: rgba(255, 255, 255, 0.2); color: #fff; border-color: rgba(255,255,255,0.3); margin-bottom: 0.5rem;">
+        <i class="fa-solid fa-cloud-arrow-up"></i> Peer-to-Peer Academic Contribution
+      </span>
+      <h1>Upload & Share Study Notes</h1>
+      <p>Contribute your revision notes, lab guides, or seminar slides to the portal repository.</p>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="container">
+
+      <div class="upload-grid">
+        
+        <!-- Left Column: Upload Form -->
+        <div class="upload-card">
+          <h2 style="font-size: 1.4rem; font-weight: 800; margin-bottom: 0.35rem; display: flex; align-items: center; gap: 0.5rem;">
+            <i class="fa-solid fa-file-arrow-up" style="color: var(--primary);"></i> Share Study Resource
+          </h2>
+          <p style="font-size: 0.875rem; color: var(--text-muted); margin-bottom: 1.5rem;">
+            Fill in the course details and select a PDF, DOCX, or PPT document from your device.
+          </p>
+
+          <!-- Drag and Drop Zone -->
+          <div class="dropzone" id="uploadDropzone">
+            <input type="file" id="fileInput" accept=".pdf,.doc,.docx,.ppt,.pptx" style="display: none;">
+            <div class="dropzone-icon">
+              <i class="fa-solid fa-cloud-arrow-up"></i>
+            </div>
+            <div class="dropzone-title">Click to browse or drag & drop your study file here</div>
+            <div class="dropzone-desc">Accepted file formats: PDF, Word (DOCX), PowerPoint (PPT/PPTX) — up to 25MB</div>
+
+            <div class="file-selected-badge" id="fileSelectedBadge">
+              <i class="fa-solid fa-circle-check"></i>
+              <span id="selectedFileName">document.pdf (2.4 MB)</span>
+              <button type="button" onclick="clearSelectedFile(event)" style="background:none; border:none; color: var(--rose); cursor:pointer; margin-left: 0.5rem;" title="Remove file">&times;</button>
+            </div>
+          </div>
+
+          <!-- Note Metadata Form -->
+          <form id="notesUploadForm" novalidate>
+            <div class="form-group">
+              <label class="form-label" for="uploadTitle">Note Title <span style="color: var(--rose);">*</span></label>
+              <div class="input-with-icon">
+                <i class="fa-solid fa-heading field-icon"></i>
+                <input type="text" id="uploadTitle" class="form-control" placeholder="e.g. Distributed Operating Systems & Concurrency Notes" required>
+              </div>
+              <div class="form-hint">Provide an informative, searchable title.</div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="uploadSubject">Academic Subject <span style="color: var(--rose);">*</span></label>
+                <select id="uploadSubject" class="form-select" required>
+                  <option value="Computer Science">Computer Science</option>
+                  <option value="Cloud Computing">Cloud Computing</option>
+                  <option value="Data Science">Data Science</option>
+                  <option value="Information Technology">Information Technology</option>
+                  <option value="Mathematics">Mathematics</option>
+                  <option value="Physics">Physics</option>
+                  <option value="Chemistry">Chemistry</option>
+                  <option value="English">English</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="uploadSemester">Target Semester <span style="color: var(--rose);">*</span></label>
+                <select id="uploadSemester" class="form-select" required>
+                  <option value="Semester 1">Semester 1</option>
+                  <option value="Semester 2">Semester 2</option>
+                  <option value="Semester 3">Semester 3</option>
+                  <option value="Semester 4">Semester 4</option>
+                  <option value="Semester 5">Semester 5</option>
+                  <option value="Semester 6" selected>Semester 6</option>
+                  <option value="Semester 7">Semester 7</option>
+                  <option value="Semester 8">Semester 8</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="uploadFileType">Document Format</label>
+                <select id="uploadFileType" class="form-select">
+                  <option value="PDF">PDF (.pdf)</option>
+                  <option value="DOCX">Word Document (.docx)</option>
+                  <option value="PPT">PowerPoint Slides (.ppt / .pptx)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="uploadAuthor">Contributor Name</label>
+                <div class="input-with-icon">
+                  <i class="fa-solid fa-user-pen field-icon"></i>
+                  <input type="text" id="uploadAuthor" class="form-control" placeholder="Your name" required>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="uploadTags">Key Topics / Tags (comma-separated)</label>
+              <div class="input-with-icon">
+                <i class="fa-solid fa-tags field-icon"></i>
+                <input type="text" id="uploadTags" class="form-control" placeholder="e.g. Microservices, Docker, Kubernetes, AWS">
+              </div>
+              <div class="form-hint">Tags help peers find your note during searches.</div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="uploadDescription">Course Summary & Description <span style="color: var(--rose);">*</span></label>
+              <textarea id="uploadDescription" class="form-control" placeholder="Briefly describe what this note covers, key formulas, professor highlights, and exam hints..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-purple btn-lg btn-block" id="uploadSubmitBtn">
+              <i class="fa-solid fa-cloud-arrow-up"></i> Upload Note to Portal
+            </button>
+          </form>
+        </div>
+
+        <!-- Right Column: Storage Notice & My Uploads List -->
+        <div>
+          
+          <!-- Cloud Architecture & Local Storage Notice Card -->
+          <div class="storage-notice-card">
+            <h4><i class="fa-solid fa-database"></i> Browser Sandbox Persistence Notice</h4>
+            <p>
+              <strong>Frontend-Only Storage Architecture:</strong> Since this project runs entirely client-side without a backend server, your uploaded files are securely stored inside this browser's <strong>IndexedDB</strong> and <strong>LocalStorage</strong> engines.
+            </p>
+            <p style="margin-top: 0.5rem; font-size: 0.8rem; color: #475569;">
+              <i class="fa-solid fa-circle-check" style="color: var(--emerald);"></i> Files persist permanently across browser page refreshes on this device.<br>
+              <i class="fa-solid fa-info-circle" style="color: var(--primary);"></i> In a future production cloud release, this form would stream binary multipart streams directly to an Amazon S3 Bucket via pre-signed URLs.
+            </p>
+          </div>
+
+          <!-- My Uploads Container -->
+          <div class="my-uploads-wrapper">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem;">
+              <h3 style="font-size: 1.15rem; font-weight: 700;">
+                <i class="fa-solid fa-folder-tree" style="color: var(--primary);"></i> My Uploaded Notes
+              </h3>
+              <span class="badge badge-primary" id="myUploadsCount">0 Notes</span>
+            </div>
+
+            <div id="myUploadsContainer">
+              <!-- Injected dynamically via upload.js -->
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Portal Footer -->
+  <footer class="portal-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h4><i class="fa-solid fa-graduation-cap"></i> Student Notes Sharing Portal</h4>
+          <p>An academic cloud computing curriculum project engineered using HTML5, CSS3, and vanilla JavaScript. Provides client-side cataloging, peer-to-peer revision notes sharing, and instant browser downloads.</p>
+        </div>
+        <div class="footer-col">
+          <h5>Core Disciplines</h5>
+          <ul class="footer-links">
+            <li><a href="notes.html?subject=Cloud Computing">Cloud Computing</a></li>
+            <li><a href="notes.html?subject=Computer Science">Computer Science</a></li>
+            <li><a href="notes.html?subject=Data Science">Data Science</a></li>
+            <li><a href="notes.html?subject=Information Technology">Information Technology</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Quick Access</h5>
+          <ul class="footer-links">
+            <li><a href="dashboard.html">Student Dashboard</a></li>
+            <li><a href="notes.html">Browse Notes Library</a></li>
+            <li><a href="upload.html">Upload & Share Notes</a></li>
+            <li><a href="dashboard.html#cloudSection">Cloud Computing Project Info</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Demonstration Mode</h5>
+          <p style="font-size: 0.8rem; line-height: 1.5; color: #94a3b8; margin-bottom: 0.75rem;">
+            This application is a 100% frontend implementation. User accounts and notes are safely sandboxed in your browser's LocalStorage and IndexedDB.
+          </p>
+          <span class="badge badge-purple"><i class="fa-solid fa-circle-check"></i> Ready for Netlify / Vercel</span>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; 2026 Student Notes Sharing Portal. Designed for Academic Excellence.</div>
+        <div>Engineered with Pure Vanilla Web Technologies.</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/db.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/upload.js"></script>
+</body>
+</html>

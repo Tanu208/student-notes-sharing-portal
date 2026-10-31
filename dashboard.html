@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Notes Sharing Portal | Home & Dashboard</title>
+  <meta name="description" content="Central academic dashboard for college students to access lecture notes, explore 8 disciplines, view stats, and inspect the cloud architecture.">
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Portal Styles -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="container nav-wrapper">
+      <a href="dashboard.html" class="brand-logo">
+        <div class="brand-icon-box">
+          <i class="fa-solid fa-graduation-cap"></i>
+        </div>
+        <div class="brand-title">
+          <span class="brand-title-main">Student Notes Portal</span>
+          <span class="brand-title-sub">Cloud Computing Academic Project</span>
+        </div>
+      </a>
+
+      <!-- Mobile Menu Button -->
+      <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle navigation menu" onclick="document.getElementById('mainNavLinks').classList.toggle('open')">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <!-- Navigation Links -->
+      <nav>
+        <ul class="nav-links" id="mainNavLinks">
+          <li><a href="dashboard.html" class="nav-link active"><i class="fa-solid fa-house"></i> Dashboard</a></li>
+          <li><a href="notes.html" class="nav-link"><i class="fa-solid fa-book-open"></i> Explore Notes</a></li>
+          <li><a href="upload.html" class="nav-link"><i class="fa-solid fa-cloud-arrow-up"></i> Upload Notes</a></li>
+        </ul>
+      </nav>
+
+      <!-- User Profile or Sign In Button -->
+      <div id="navUserSection"></div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    
+    <!-- Hero Banner with Welcome Message & Quick Search -->
+    <section class="dashboard-hero">
+      <div class="container">
+        <div class="hero-welcome-badge">
+          <i class="fa-solid fa-sparkles"></i> Academic Year 2026-2027 • Active Student Session
+        </div>
+        <h1 class="dashboard-hero-title">
+          Welcome back, <span id="studentWelcomeName">Alex Johnson</span>! 👋
+        </h1>
+        <p class="dashboard-hero-subtitle" id="studentWelcomeDept">
+          Computer Science • Semester 6
+        </p>
+        <p style="color: rgba(255, 255, 255, 0.85); max-width: 650px; font-size: 0.95rem; margin-bottom: 1.75rem;">
+          Access verified lecture notes, exam revisions, and peer-contributed study materials across 8 core university departments.
+        </p>
+
+        <!-- Quick Search Bar -->
+        <div class="hero-search-wrapper">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" id="heroSearchInput" class="hero-search-input" placeholder="Search by note title, subject, or keyword (e.g. Algorithms, Cloud, Fourier)...">
+          <button class="btn btn-primary hero-search-btn" id="heroSearchBtn">
+            <i class="fa-solid fa-magnifying-glass"></i> Search
+          </button>
+        </div>
+
+        <!-- Quick Filter Tags -->
+        <div class="hero-quick-tags">
+          <span style="font-weight: 600; font-size: 0.8rem; color: rgba(255, 255, 255, 0.8);">Popular Searches:</span>
+          <a href="notes.html?subject=Cloud Computing" class="hero-tag-link">Cloud Computing</a>
+          <a href="notes.html?subject=Computer Science" class="hero-tag-link">Data Structures</a>
+          <a href="notes.html?subject=Data Science" class="hero-tag-link">Machine Learning</a>
+          <a href="notes.html?fileType=PDF" class="hero-tag-link">PDF Notes</a>
+          <a href="notes.html?semester=Semester 7" class="hero-tag-link">Semester 7</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="container">
+      
+      <!-- Dynamic Platform Statistics (Total notes, Total subjects, Total downloads, Total contributors) -->
+      <section class="stats-grid" aria-label="Portal Metrics">
+        <div class="stat-card">
+          <div class="stat-icon-wrapper" style="background: #eff6ff; color: #2563eb;">
+            <i class="fa-solid fa-file-lines"></i>
+          </div>
+          <div class="stat-info">
+            <span class="stat-number" id="statTotalNotes">14</span>
+            <span class="stat-label">Total Notes Available</span>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon-wrapper" style="background: #f5f3ff; color: #7c3aed;">
+            <i class="fa-solid fa-shapes"></i>
+          </div>
+          <div class="stat-info">
+            <span class="stat-number" id="statTotalSubjects">8</span>
+            <span class="stat-label">Academic Disciplines</span>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon-wrapper" style="background: #ecfeff; color: #0284c7;">
+            <i class="fa-solid fa-download"></i>
+          </div>
+          <div class="stat-info">
+            <span class="stat-number" id="statTotalDownloads">6,240</span>
+            <span class="stat-label">Downloads Served</span>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon-wrapper" style="background: #f0fdf4; color: #16a34a;">
+            <i class="fa-solid fa-users"></i>
+          </div>
+          <div class="stat-info">
+            <span class="stat-number" id="statTotalContributors">18</span>
+            <span class="stat-label">Active Contributors</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Quick Action Buttons Bar -->
+      <section class="quick-actions-bar">
+        <div class="quick-action-text">
+          <h3>Need to study or contribute course notes?</h3>
+          <p>Find study materials for upcoming exams or share your own revision notes with classmates.</p>
+        </div>
+        <div class="quick-action-buttons">
+          <a href="notes.html" class="btn btn-primary">
+            <i class="fa-solid fa-book-open-reader"></i> Explore All Notes
+          </a>
+          <a href="upload.html" class="btn btn-purple">
+            <i class="fa-solid fa-cloud-arrow-up"></i> Upload & Share Note
+          </a>
+          <a href="#cloudSection" class="btn btn-secondary">
+            <i class="fa-solid fa-cloud"></i> Cloud Architecture
+          </a>
+        </div>
+      </section>
+
+      <!-- 8 Core Academic Subjects Grid -->
+      <section style="margin-bottom: 3.5rem;">
+        <div class="section-header">
+          <div class="section-title-box">
+            <h2><i class="fa-solid fa-layer-group" style="color: var(--primary);"></i> Explore by Subject</h2>
+            <p>Curated study materials organized across 8 standard engineering and academic disciplines</p>
+          </div>
+          <a href="notes.html" class="btn btn-outline-primary btn-sm">
+            View All Subjects <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+
+        <div class="subjects-grid" id="subjectsGrid">
+          <!-- Injected dynamically via dashboard.js for 8 subjects -->
+        </div>
+      </section>
+
+      <!-- Recently Uploaded Notes -->
+      <section style="margin-bottom: 3.5rem;">
+        <div class="section-header">
+          <div class="section-title-box">
+            <h2><i class="fa-solid fa-clock-rotate-left" style="color: var(--purple);"></i> Recently Uploaded Notes</h2>
+            <p>Latest lecture materials and revision notes contributed by students and faculty</p>
+          </div>
+          <a href="notes.html?sort=newest" class="btn btn-outline-primary btn-sm">
+            View All Recent <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+
+        <div class="notes-grid" id="recentNotesGrid">
+          <!-- Injected dynamically via dashboard.js -->
+        </div>
+      </section>
+
+      <!-- Popular Study Materials -->
+      <section style="margin-bottom: 3.5rem;">
+        <div class="section-header">
+          <div class="section-title-box">
+            <h2><i class="fa-solid fa-fire" style="color: #ea580c;"></i> Popular Study Materials</h2>
+            <p>Top-rated and most frequently downloaded exam preparation guides</p>
+          </div>
+          <a href="notes.html?sort=downloads" class="btn btn-outline-primary btn-sm">
+            Browse Popular <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+
+        <div class="notes-grid" id="popularNotesGrid">
+          <!-- Injected dynamically via dashboard.js -->
+        </div>
+      </section>
+
+      <!-- CLOUD COMPUTING PROJECT PRESENTATION SECTION -->
+      <section class="cloud-showcase-card" id="cloudSection">
+        <div class="cloud-showcase-header">
+          <span class="cloud-showcase-badge"><i class="fa-solid fa-graduation-cap"></i> Academic Project Presentation</span>
+          <span class="badge badge-purple">Course: Cloud Computing & Systems Architecture</span>
+        </div>
+
+        <div class="section-title-box" style="margin-bottom: 1.5rem;">
+          <h2 style="font-size: 1.85rem;"><i class="fa-solid fa-cloud" style="color: var(--primary);"></i> Cloud Computing in Academic Knowledge Systems</h2>
+          <p>An architectural study on transforming localized university file sharing into an elastic, highly available cloud repository</p>
+        </div>
+
+        <!-- 3 Pillars of Cloud Computing -->
+        <div class="cloud-concepts-grid">
+          <div class="cloud-concept-box">
+            <div class="cloud-concept-icon"><i class="fa-solid fa-server"></i></div>
+            <h4>1. What is Cloud Computing?</h4>
+            <p>
+              According to the NIST definition, cloud computing provides ubiquitous, convenient, on-demand network access to a shared pool of configurable computing resources (networks, servers, storage, applications, and services) that can be rapidly provisioned with minimal management effort.
+            </p>
+          </div>
+
+          <div class="cloud-concept-box">
+            <div class="cloud-concept-icon"><i class="fa-solid fa-chalkboard-user"></i></div>
+            <h4>2. How Educational Clouds Operate</h4>
+            <p>
+              Educational SaaS platforms decouple heavy computing and physical disk storage from student laptops. Files are ingested, indexed with metadata in distributed databases, and streamed through global Content Delivery Networks (CDNs) with millisecond latency.
+            </p>
+          </div>
+
+          <div class="cloud-concept-box">
+            <div class="cloud-concept-icon"><i class="fa-solid fa-earth-americas"></i></div>
+            <h4>3. Benefits of Online Notes Sharing</h4>
+            <p>
+              <strong>High Availability:</strong> 99.99% uptime with zero physical server maintenance.<br>
+              <strong>Accessibility:</strong> Cross-platform access on mobile, tablet, and desktop.<br>
+              <strong>Fault Tolerance:</strong> Automated multi-zone replication prevents data loss.
+            </p>
+          </div>
+        </div>
+
+        <!-- Architecture Roadmap: Frontend Simulation vs Production Cloud Architecture -->
+        <div class="architecture-comparison">
+          <div class="arch-column">
+            <h5><i class="fa-solid fa-desktop"></i> Current Implementation (Frontend Simulation)</h5>
+            <ul>
+              <li><i class="fa-solid fa-check"></i> Pure HTML5, CSS3 & Vanilla JavaScript (No backend or paid API required)</li>
+              <li><i class="fa-solid fa-check"></i> Client-side Session Authentication via <code>localStorage</code></li>
+              <li><i class="fa-solid fa-check"></i> Client-side Persistent File Ingestion via <code>IndexedDB</code></li>
+              <li><i class="fa-solid fa-check"></i> Instant In-Memory Dynamic Filtering & Instant Blob Downloads</li>
+              <li><i class="fa-solid fa-check"></i> Zero deployment cost; fully deployable to Netlify, Vercel, or GitHub Pages</li>
+            </ul>
+          </div>
+
+          <div class="arch-column">
+            <h5><i class="fa-solid fa-cloud-arrow-up"></i> Production Cloud Architecture Roadmap</h5>
+            <ul>
+              <li><i class="fa-solid fa-cloud-arrow-up"></i> <strong>Object Storage:</strong> Amazon S3 / Google Cloud Storage for multi-terabyte PDF storage</li>
+              <li><i class="fa-solid fa-cloud-arrow-up"></i> <strong>Serverless Backend:</strong> AWS Lambda / Google Cloud Functions triggered via REST API Gateway</li>
+              <li><i class="fa-solid fa-cloud-arrow-up"></i> <strong>Metadata Database:</strong> Amazon DynamoDB / MongoDB Atlas for fast indexing</li>
+              <li><i class="fa-solid fa-cloud-arrow-up"></i> <strong>Global CDN:</strong> Amazon CloudFront / Cloudflare for low-latency edge caching</li>
+              <li><i class="fa-solid fa-cloud-arrow-up"></i> <strong>Identity & SSO:</strong> Amazon Cognito / Auth0 for university single sign-on</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Academic Disclaimer -->
+        <div style="margin-top: 1.5rem; padding: 1rem 1.25rem; background: #fffbeb; border: 1px solid #fde68a; border-radius: var(--radius-md); font-size: 0.85rem; color: #92400e;">
+          <strong><i class="fa-solid fa-circle-exclamation"></i> Academic Architecture Disclaimer:</strong>
+          This version of the Student Notes Sharing Portal is intentionally engineered as an accessible, zero-dependency frontend demonstration. Notes uploaded in this browser are securely stored in your local browser sandbox (IndexedDB and LocalStorage). They are persisted on this device across browser reloads, without claiming to transmit files to a live remote cloud server.
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Note Preview Modal (Shared Viewer) -->
+  <div class="modal-overlay" id="previewModalOverlay" onclick="if(event.target === this) closeNotePreview()">
+    <div class="modal-container" role="dialog" aria-modal="true">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-file-lines" style="color: var(--primary);"></i> Document Preview</h3>
+        <button class="modal-close-btn" onclick="closeNotePreview()" aria-label="Close Preview">&times;</button>
+      </div>
+      <div class="modal-body">
+        <h2 id="modalNoteTitle" style="font-size: 1.35rem; font-weight: 800; margin-bottom: 0.75rem;"></h2>
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem;">
+          <span class="badge badge-purple" id="modalNoteSubject"></span>
+          <span class="badge badge-primary" id="modalNoteSemester"></span>
+          <span class="badge badge-pdf" id="modalNoteType"></span>
+        </div>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">
+          Contributed by: <strong id="modalNoteAuthor" style="color: var(--text-main);"></strong>
+        </p>
+
+        <div style="font-weight: 700; font-size: 0.95rem; margin-bottom: 0.5rem;">
+          <i class="fa-solid fa-book-open"></i> Note Content Transcript:
+        </div>
+        <div class="preview-viewer-box" id="modalPreviewContent"></div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary btn-sm" onclick="closeNotePreview()">Close</button>
+        <button class="btn btn-primary btn-sm" id="modalDownloadBtn">
+          <i class="fa-solid fa-download"></i> Download Note File
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Portal Footer -->
+  <footer class="portal-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h4><i class="fa-solid fa-graduation-cap"></i> Student Notes Sharing Portal</h4>
+          <p>An academic cloud computing curriculum project engineered using HTML5, CSS3, and vanilla JavaScript. Provides client-side cataloging, peer-to-peer revision notes sharing, and instant browser downloads.</p>
+        </div>
+        <div class="footer-col">
+          <h5>Core Disciplines</h5>
+          <ul class="footer-links">
+            <li><a href="notes.html?subject=Cloud Computing">Cloud Computing</a></li>
+            <li><a href="notes.html?subject=Computer Science">Computer Science</a></li>
+            <li><a href="notes.html?subject=Data Science">Data Science</a></li>
+            <li><a href="notes.html?subject=Information Technology">Information Technology</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Quick Access</h5>
+          <ul class="footer-links">
+            <li><a href="dashboard.html">Student Dashboard</a></li>
+            <li><a href="notes.html">Browse Notes Library</a></li>
+            <li><a href="upload.html">Upload & Share Notes</a></li>
+            <li><a href="#cloudSection">Cloud Computing Project Info</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Demonstration Mode</h5>
+          <p style="font-size: 0.8rem; line-height: 1.5; color: #94a3b8; margin-bottom: 0.75rem;">
+            This application is a 100% frontend implementation. User accounts and notes are safely sandboxed in your browser's LocalStorage and IndexedDB.
+          </p>
+          <span class="badge badge-purple"><i class="fa-solid fa-circle-check"></i> Ready for Netlify / Vercel</span>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; 2026 Student Notes Sharing Portal. Designed for Academic Excellence.</div>
+        <div>Engineered with Pure Vanilla Web Technologies.</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/db.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>
