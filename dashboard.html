@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -16,6 +16,1926 @@
 
   <!-- Portal Styles -->
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="style.css">
+  <style id="portal-inlined-styles">
+/* ==========================================================================
+   STUDENT NOTES SHARING PORTAL - MODERN UI STYLESHEET
+   Color Theme: Professional Blue, Light Purple & Clean White
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. CSS VARIABLES & DESIGN TOKENS
+   -------------------------------------------------------------------------- */
+:root {
+  /* Primary & Accent Colors */
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --primary-light: #3b82f6;
+  --primary-subtle: #eff6ff;
+
+  --purple: #7c3aed;
+  --purple-hover: #6d28d9;
+  --purple-light: #8b5cf6;
+  --purple-subtle: #f5f3ff;
+  --purple-border: #ddd6fe;
+
+  --cyan: #0284c7;
+  --emerald: #059669;
+  --amber: #d97706;
+  --rose: #e11d48;
+
+  /* Gradients */
+  --gradient-brand: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+  --gradient-hero: linear-gradient(135deg, #1e3a8a 0%, #4338ca 50%, #6b21a8 100%);
+  --gradient-card: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  --gradient-accent: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+
+  /* Neutral & Surface Colors */
+  --bg-body: #f8fafc;
+  --bg-surface: #ffffff;
+  --bg-surface-alt: #f1f5f9;
+  --border-color: #e2e8f0;
+  --border-focus: #93c5fd;
+
+  /* Text Colors */
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --text-light: #94a3b8;
+  --text-inverse: #ffffff;
+
+  /* Shadows */
+  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  --shadow-glow: 0 0 20px rgba(99, 102, 241, 0.25);
+
+  /* Transitions & Radii */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.25s ease;
+  --transition-smooth: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* --------------------------------------------------------------------------
+   2. RESET & BASE ELEMENTS
+   -------------------------------------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background-color: var(--bg-body);
+  color: var(--text-main);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--primary-hover);
+}
+
+img, svg {
+  vertical-align: middle;
+  max-width: 100%;
+}
+
+button, input, select, textarea {
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+/* Container */
+.container {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.main-content {
+  flex: 1 0 auto;
+  padding-bottom: 4rem;
+}
+
+/* --------------------------------------------------------------------------
+   3. NAVIGATION BAR
+   -------------------------------------------------------------------------- */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-color);
+  padding: 0.85rem 0;
+  transition: all var(--transition-normal);
+}
+
+.navbar .nav-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: var(--text-main);
+  text-decoration: none;
+}
+
+.brand-icon-box {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-md);
+  background: var(--gradient-brand);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 1.25rem;
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
+}
+
+.brand-title {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-title-main {
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.brand-title-sub {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 0.5rem;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.1rem;
+  border-radius: var(--radius-full);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  transition: all var(--transition-fast);
+}
+
+.nav-link:hover {
+  color: var(--primary);
+  background-color: var(--primary-subtle);
+}
+
+.nav-link.active {
+  color: var(--primary);
+  background-color: var(--primary-subtle);
+  font-weight: 600;
+}
+
+.nav-link i {
+  font-size: 1rem;
+}
+
+/* User Profile Badge in Nav */
+.user-profile-menu {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.35rem 0.6rem 0.35rem 0.35rem;
+  background-color: var(--bg-surface-alt);
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-color);
+}
+
+.user-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--gradient-brand);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.85rem;
+  box-shadow: 0 2px 6px rgba(124, 58, 237, 0.25);
+}
+
+.user-meta {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.user-name {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.user-dept {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.logout-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.7rem;
+  font-size: 0.75rem;
+  border-radius: var(--radius-full);
+}
+
+/* Mobile Toggle */
+.mobile-nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  color: var(--text-main);
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+/* --------------------------------------------------------------------------
+   4. BUTTONS & UI COMPONENTS
+   -------------------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1.4rem;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all var(--transition-fast);
+  text-decoration: none;
+  line-height: 1.2;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn-primary {
+  background: var(--gradient-brand);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+}
+
+.btn-primary:hover {
+  color: #ffffff;
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.35);
+}
+
+.btn-purple {
+  background: linear-gradient(135deg, #7c3aed 0%, #9333ea 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.25);
+}
+
+.btn-purple:hover {
+  color: #ffffff;
+  box-shadow: 0 6px 16px rgba(124, 58, 237, 0.35);
+}
+
+.btn-secondary {
+  background-color: var(--bg-surface);
+  color: var(--text-main);
+  border-color: var(--border-color);
+}
+
+.btn-secondary:hover {
+  background-color: var(--bg-surface-alt);
+  border-color: #cbd5e1;
+  color: var(--text-main);
+}
+
+.btn-outline-primary {
+  background: transparent;
+  color: var(--primary);
+  border-color: var(--primary);
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--primary-subtle);
+  color: var(--primary-hover);
+}
+
+.btn-outline-danger {
+  background: transparent;
+  color: var(--rose);
+  border-color: #fecdd3;
+}
+
+.btn-outline-danger:hover {
+  background-color: #ffe4e6;
+  border-color: var(--rose);
+  color: var(--rose);
+}
+
+.btn-sm {
+  padding: 0.45rem 0.85rem;
+  font-size: 0.85rem;
+  border-radius: var(--radius-sm);
+}
+
+.btn-lg {
+  padding: 0.9rem 1.8rem;
+  font-size: 1.05rem;
+  border-radius: var(--radius-lg);
+}
+
+.btn-block {
+  width: 100%;
+}
+
+/* Badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.65rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: var(--radius-full);
+}
+
+.badge-primary {
+  background-color: var(--primary-subtle);
+  color: var(--primary);
+}
+
+.badge-purple {
+  background-color: var(--purple-subtle);
+  color: var(--purple);
+  border: 1px solid var(--purple-border);
+}
+
+.badge-pdf {
+  background-color: #fef2f2;
+  color: #dc2626;
+  border: 1px solid #fecaca;
+}
+
+.badge-docx {
+  background-color: #eff6ff;
+  color: #2563eb;
+  border: 1px solid #bfdbfe;
+}
+
+.badge-ppt {
+  background-color: #fff7ed;
+  color: #ea580c;
+  border: 1px solid #ffedd5;
+}
+
+.badge-cloud {
+  background-color: #ecfeff;
+  color: #0284c7;
+  border: 1px solid #bae6fd;
+}
+
+/* Form Controls */
+.form-group {
+  margin-bottom: 1.25rem;
+  text-align: left;
+}
+
+.form-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  color: var(--text-main);
+}
+
+.input-with-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-with-icon i.field-icon {
+  position: absolute;
+  left: 1rem;
+  color: var(--text-muted);
+  pointer-events: none;
+  font-size: 1rem;
+}
+
+.input-with-icon .form-control {
+  padding-left: 2.75rem;
+}
+
+.toggle-password-btn {
+  position: absolute;
+  right: 0.75rem;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0.4rem;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toggle-password-btn:hover {
+  color: var(--primary);
+}
+
+.form-control, .form-select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
+  color: var(--text-main);
+  background-color: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+  outline: none;
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+textarea.form-control {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.form-hint {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 0.35rem;
+}
+
+/* --------------------------------------------------------------------------
+   5. PAGE 1: LOGIN & REGISTRATION
+   -------------------------------------------------------------------------- */
+.auth-page-wrapper {
+  min-height: calc(100vh - 80px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem 1rem;
+  background: radial-gradient(circle at 10% 20%, rgba(37, 99, 235, 0.08) 0%, rgba(124, 58, 237, 0.08) 90.1%);
+}
+
+.auth-container {
+  width: 100%;
+  max-width: 1080px;
+  background: var(--bg-surface);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-xl);
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+}
+
+/* Auth Left Banner */
+.auth-hero-pane {
+  background: var(--gradient-hero);
+  color: #ffffff;
+  padding: 3rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+
+.auth-hero-pane::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  pointer-events: none;
+}
+
+.auth-hero-pane::after {
+  content: '';
+  position: absolute;
+  bottom: -80px;
+  left: -80px;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.04);
+  pointer-events: none;
+}
+
+.auth-hero-header {
+  margin-bottom: 2rem;
+}
+
+.auth-cloud-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-full);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.auth-hero-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+}
+
+.auth-hero-desc {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.6;
+}
+
+.auth-features-list {
+  list-style: none;
+  margin: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.auth-feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+}
+
+.auth-feature-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  flex-shrink: 0;
+}
+
+.auth-feature-text h4 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 0.15rem;
+}
+
+.auth-feature-text p {
+  font-size: 0.825rem;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.auth-hero-footer {
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Auth Right Form Pane */
+.auth-form-pane {
+  padding: 2.5rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.auth-tabs {
+  display: flex;
+  background-color: var(--bg-surface-alt);
+  padding: 0.35rem;
+  border-radius: var(--radius-md);
+  margin-bottom: 1.75rem;
+  border: 1px solid var(--border-color);
+}
+
+.auth-tab-btn {
+  flex: 1;
+  padding: 0.65rem;
+  border: none;
+  background: transparent;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.auth-tab-btn.active {
+  background: var(--bg-surface);
+  color: var(--primary);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Demo Credentials Box */
+.demo-credentials-card {
+  background: linear-gradient(135deg, #eff6ff 0%, #f5f3ff 100%);
+  border: 1px solid #bfdbfe;
+  border-radius: var(--radius-md);
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.demo-credentials-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.demo-tag {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.demo-credentials-body {
+  font-size: 0.85rem;
+  color: var(--text-main);
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-family: monospace;
+}
+
+.btn-autofill {
+  margin-top: 0.65rem;
+  width: 100%;
+  font-size: 0.8rem;
+  padding: 0.45rem 0.75rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--primary-light);
+  color: var(--primary);
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+}
+
+.btn-autofill:hover {
+  background: var(--primary);
+  color: #fff;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.auth-form-options {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+  font-size: 0.85rem;
+}
+
+.custom-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  cursor: pointer;
+  color: var(--text-muted);
+}
+
+.custom-checkbox input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--primary);
+  cursor: pointer;
+}
+
+/* --------------------------------------------------------------------------
+   6. PAGE 2: HOME / STUDENT DASHBOARD
+   -------------------------------------------------------------------------- */
+.dashboard-hero {
+  background: var(--gradient-hero);
+  color: #ffffff;
+  padding: 3.5rem 0;
+  border-radius: 0 0 var(--radius-xl) var(--radius-xl);
+  margin-bottom: 2.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.dashboard-hero::before {
+  content: '';
+  position: absolute;
+  top: -100px;
+  right: -100px;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(124, 58, 237, 0.4) 0%, rgba(37, 99, 235, 0) 70%);
+  pointer-events: none;
+}
+
+.hero-welcome-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.85rem;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.dashboard-hero-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.02em;
+}
+
+.dashboard-hero-subtitle {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 650px;
+  margin-bottom: 2rem;
+}
+
+/* Dashboard Hero Search Bar */
+.hero-search-wrapper {
+  max-width: 700px;
+  background: #ffffff;
+  padding: 0.4rem;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.25);
+}
+
+.hero-search-wrapper i {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  margin-left: 1.25rem;
+}
+
+.hero-search-input {
+  flex: 1;
+  border: none;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  color: var(--text-main);
+  outline: none;
+}
+
+.hero-search-btn {
+  border-radius: var(--radius-full);
+  padding: 0.75rem 1.75rem;
+}
+
+.hero-quick-tags {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+  font-size: 0.85rem;
+}
+
+.hero-tag-link {
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  transition: all var(--transition-fast);
+}
+
+.hero-tag-link:hover {
+  background: #ffffff;
+  color: var(--primary);
+}
+
+/* Stats Counter Grid */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-top: -3.5rem;
+  margin-bottom: 3rem;
+  position: relative;
+  z-index: 10;
+}
+
+.stat-card {
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-md);
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  transition: all var(--transition-normal);
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.stat-icon-wrapper {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.stat-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-number {
+  font-size: 1.85rem;
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--text-main);
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  margin-top: 0.2rem;
+}
+
+/* Section Common Headers */
+.section-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 1.75rem;
+  gap: 1rem;
+}
+
+.section-title-box h2 {
+  font-size: 1.65rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.section-title-box p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin-top: 0.25rem;
+}
+
+/* 8 Core Subject Cards Grid */
+.subjects-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 3.5rem;
+}
+
+.subject-card {
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all var(--transition-normal);
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+  overflow: hidden;
+}
+
+.subject-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary-light);
+}
+
+.subject-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.subject-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.35rem;
+}
+
+.subject-card-body h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+  color: var(--text-main);
+}
+
+.subject-card-body p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.45;
+  margin-bottom: 1.25rem;
+}
+
+.subject-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--primary);
+  border-top: 1px solid var(--border-color);
+  padding-top: 0.85rem;
+}
+
+/* Quick Access Action Bar */
+.quick-actions-bar {
+  background: linear-gradient(135deg, #eff6ff 0%, #f5f3ff 100%);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  padding: 2rem 2.5rem;
+  margin-bottom: 3.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.quick-action-text h3 {
+  font-size: 1.35rem;
+  font-weight: 800;
+  margin-bottom: 0.25rem;
+}
+
+.quick-action-text p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.quick-action-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Academic Cloud Project Showcase Section */
+.cloud-showcase-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--purple-border);
+  border-radius: var(--radius-xl);
+  padding: 2.5rem;
+  margin-bottom: 3.5rem;
+  box-shadow: var(--shadow-md);
+  position: relative;
+  overflow: hidden;
+}
+
+.cloud-showcase-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.cloud-showcase-badge {
+  background: var(--gradient-brand);
+  color: #fff;
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-full);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.cloud-concepts-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.cloud-concept-box {
+  background: var(--bg-body);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  border: 1px solid var(--border-color);
+  transition: all var(--transition-fast);
+}
+
+.cloud-concept-box:hover {
+  background: #ffffff;
+  border-color: var(--primary);
+  box-shadow: var(--shadow-sm);
+}
+
+.cloud-concept-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  background: var(--primary-subtle);
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  margin-bottom: 0.85rem;
+}
+
+.cloud-concept-box h4 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+}
+
+.cloud-concept-box p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* Architecture Roadmap comparison */
+.architecture-comparison {
+  background: #0f172a;
+  color: #f8fafc;
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  margin-top: 1.5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.arch-column h5 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #38bdf8;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.arch-column ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: #cbd5e1;
+}
+
+.arch-column li i {
+  margin-right: 0.5rem;
+  font-size: 0.75rem;
+}
+
+.arch-column li i.fa-check {
+  color: #34d399;
+}
+
+.arch-column li i.fa-cloud-arrow-up {
+  color: #a78bfa;
+}
+
+/* --------------------------------------------------------------------------
+   7. PAGE 3: EXPLORE & DOWNLOAD NOTES (LIBRARY)
+   -------------------------------------------------------------------------- */
+.notes-page-header {
+  background: var(--gradient-brand);
+  color: #ffffff;
+  padding: 2.75rem 0;
+  margin-bottom: 2rem;
+}
+
+.notes-page-header h1 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.02em;
+}
+
+.notes-page-header p {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* Filter & Search Bar */
+.filter-panel {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.filter-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 1rem;
+  align-items: end;
+}
+
+.filter-filetypes {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.filetype-filter-btn {
+  padding: 0.4rem 0.85rem;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-color);
+  background: var(--bg-surface);
+  font-size: 0.825rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.filetype-filter-btn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.filetype-filter-btn.active {
+  background: var(--primary);
+  color: #ffffff;
+  border-color: var(--primary);
+}
+
+.results-count-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+/* Notes Cards Grid */
+.notes-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 3.5rem;
+}
+
+.note-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all var(--transition-normal);
+  box-shadow: var(--shadow-sm);
+  position: relative;
+}
+
+.note-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: #cbd5e1;
+}
+
+.note-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.85rem;
+  gap: 0.5rem;
+}
+
+.note-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.35;
+  margin-bottom: 0.6rem;
+  color: var(--text-main);
+}
+
+.note-description {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.note-topics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-bottom: 1.25rem;
+}
+
+.topic-tag {
+  background-color: var(--bg-surface-alt);
+  color: var(--text-muted);
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.725rem;
+  font-weight: 500;
+}
+
+.note-card-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  padding: 0.75rem 0;
+  border-top: 1px solid var(--border-color);
+  margin-bottom: 1rem;
+}
+
+.note-uploader {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.note-card-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  border: 1px dashed var(--border-color);
+  grid-column: 1 / -1;
+}
+
+.empty-state-icon {
+  font-size: 3rem;
+  color: var(--text-light);
+  margin-bottom: 1rem;
+}
+
+.empty-state h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.empty-state p {
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+}
+
+/* --------------------------------------------------------------------------
+   8. PAGE 4: UPLOAD & SHARE NOTES
+   -------------------------------------------------------------------------- */
+.upload-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 2rem;
+  margin-bottom: 3.5rem;
+}
+
+.upload-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  padding: 2.25rem;
+  box-shadow: var(--shadow-md);
+}
+
+/* Drag & Drop File Zone */
+.dropzone {
+  border: 2px dashed #93c5fd;
+  border-radius: var(--radius-lg);
+  background-color: var(--primary-subtle);
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.dropzone:hover, .dropzone.dragover {
+  border-color: var(--primary);
+  background-color: #dbeafe;
+}
+
+.dropzone-icon {
+  font-size: 2.75rem;
+  color: var(--primary);
+  margin-bottom: 0.75rem;
+}
+
+.dropzone-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 0.25rem;
+}
+
+.dropzone-desc {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.file-selected-badge {
+  display: none;
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background: #ffffff;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--emerald);
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+/* Storage Notice Banner */
+.storage-notice-card {
+  background: linear-gradient(135deg, #eff6ff 0%, #f5f3ff 100%);
+  border: 1px solid #bfdbfe;
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.storage-notice-card h4 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.storage-notice-card p {
+  font-size: 0.825rem;
+  color: var(--text-main);
+  line-height: 1.5;
+}
+
+/* My Uploads List */
+.my-uploads-wrapper {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  padding: 1.75rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.uploads-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-height: 520px;
+  overflow-y: auto;
+  padding-right: 0.35rem;
+}
+
+.uploaded-note-item {
+  background: var(--bg-body);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: all var(--transition-fast);
+}
+
+.uploaded-note-item:hover {
+  background: #ffffff;
+  box-shadow: var(--shadow-sm);
+}
+
+.uploaded-item-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.uploaded-item-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.uploaded-item-meta {
+  font-size: 0.775rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.uploaded-item-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+/* --------------------------------------------------------------------------
+   9. MODAL & PREVIEW VIEWER
+   -------------------------------------------------------------------------- */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(4px);
+  z-index: 2000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.modal-overlay.open {
+  display: flex;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.modal-container {
+  background: var(--bg-surface);
+  border-radius: var(--radius-xl);
+  width: 100%;
+  max-width: 780px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-xl);
+  overflow: hidden;
+  animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modal-header {
+  padding: 1.25rem 1.75rem;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--bg-surface-alt);
+}
+
+.modal-header h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.modal-close-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+}
+
+.modal-close-btn:hover {
+  background: #e2e8f0;
+  color: var(--text-main);
+}
+
+.modal-body {
+  padding: 1.75rem;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.preview-viewer-box {
+  background: #f8fafc;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.85rem;
+  white-space: pre-wrap;
+  color: #1e293b;
+  max-height: 350px;
+  overflow-y: auto;
+  line-height: 1.5;
+  margin-top: 1rem;
+}
+
+.modal-footer {
+  padding: 1rem 1.75rem;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--bg-surface-alt);
+}
+
+/* --------------------------------------------------------------------------
+   10. TOAST NOTIFICATIONS
+   -------------------------------------------------------------------------- */
+.toast-container {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 3000;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  pointer-events: none;
+}
+
+.custom-toast {
+  background: #ffffff;
+  border-radius: var(--radius-md);
+  padding: 0.85rem 1.25rem;
+  box-shadow: var(--shadow-lg);
+  border-left: 4px solid var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-width: 300px;
+  max-width: 420px;
+  pointer-events: auto;
+  animation: slideInRight 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 0.3s ease;
+}
+
+.custom-toast.fade-out {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.custom-toast-success {
+  border-left-color: var(--emerald);
+}
+
+.custom-toast-success i {
+  color: var(--emerald);
+}
+
+.custom-toast-error {
+  border-left-color: var(--rose);
+}
+
+.custom-toast-error i {
+  color: var(--rose);
+}
+
+.custom-toast-warning {
+  border-left-color: var(--amber);
+}
+
+.custom-toast-warning i {
+  color: var(--amber);
+}
+
+.custom-toast-info {
+  border-left-color: var(--primary);
+}
+
+.custom-toast-info i {
+  color: var(--primary);
+}
+
+.toast-content {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.toast-close {
+  background: none;
+  border: none;
+  color: var(--text-light);
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+
+/* --------------------------------------------------------------------------
+   11. FOOTER
+   -------------------------------------------------------------------------- */
+.portal-footer {
+  background-color: #0f172a;
+  color: #94a3b8;
+  padding: 3.5rem 0 1.5rem 0;
+  margin-top: auto;
+  font-size: 0.9rem;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1.25fr;
+  gap: 2.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.footer-brand h4 {
+  color: #ffffff;
+  font-size: 1.2rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+
+.footer-brand p {
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+.footer-col h5 {
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.footer-links a {
+  color: #94a3b8;
+  font-size: 0.85rem;
+  transition: color var(--transition-fast);
+}
+
+.footer-links a:hover {
+  color: #ffffff;
+}
+
+.footer-bottom {
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* --------------------------------------------------------------------------
+   12. KEYFRAME ANIMATIONS & RESPONSIVE BREAKPOINTS
+   -------------------------------------------------------------------------- */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+/* Tablet & Smaller Desktops (max-width: 1024px) */
+@media (max-width: 1024px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .subjects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .notes-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .cloud-concepts-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .filter-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Mobile Devices (max-width: 768px) */
+@media (max-width: 768px) {
+  .mobile-nav-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #ffffff;
+    flex-direction: column;
+    padding: 1rem;
+    box-shadow: var(--shadow-lg);
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .auth-container {
+    grid-template-columns: 1fr;
+  }
+
+  .auth-hero-pane {
+    display: none; /* Focus directly on login form on mobile */
+  }
+
+  .upload-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .notes-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+    margin-top: -2rem;
+  }
+
+  .subjects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cloud-concepts-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .architecture-comparison {
+    grid-template-columns: 1fr;
+  }
+
+  .filter-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .quick-actions-bar {
+    flex-direction: column;
+    text-align: center;
+    padding: 1.5rem;
+  }
+
+  .quick-action-buttons {
+    justify-content: center;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+  </style>
 </head>
 <body>
 
@@ -58,13 +1978,13 @@
     <section class="dashboard-hero">
       <div class="container">
         <div class="hero-welcome-badge">
-          <i class="fa-solid fa-sparkles"></i> Academic Year 2026-2027 • Active Student Session
+          <i class="fa-solid fa-sparkles"></i> Academic Year 2026-2027 â€¢ Active Student Session
         </div>
         <h1 class="dashboard-hero-title">
-          Welcome back, <span id="studentWelcomeName">Alex Johnson</span>! 👋
+          Welcome back, <span id="studentWelcomeName">Alex Johnson</span>! ðŸ‘‹
         </h1>
         <p class="dashboard-hero-subtitle" id="studentWelcomeDept">
-          Computer Science • Semester 6
+          Computer Science â€¢ Semester 6
         </p>
         <p style="color: rgba(255, 255, 255, 0.85); max-width: 650px; font-size: 0.95rem; margin-bottom: 1.75rem;">
           Access verified lecture notes, exam revisions, and peer-contributed study materials across 8 core university departments.
@@ -356,8 +2276,1292 @@
   </footer>
 
   <!-- Scripts -->
-  <script src="js/db.js"></script>
-  <script src="js/auth.js"></script>
-  <script src="js/dashboard.js"></script>
+  <script id="inlined-db-auth-dash">
+/**
+ * Student Notes Sharing Portal - Database & Data Access Layer (db.js)
+ * Manages sample notes, localStorage metadata, and IndexedDB file storage.
+ * Frontend-only implementation simulating Cloud Repository storage.
+ */
+
+const DB_NAME = 'StudentNotesPortalDB';
+const DB_VERSION = 1;
+const STORE_NAME = 'uploaded_files';
+
+// 8 Core Academic Subjects
+const SUBJECTS = [
+  { id: 'cs', name: 'Computer Science', icon: 'fa-laptop-code', color: '#2563eb', bg: '#eff6ff', desc: 'Algorithms, Data Structures, Operating Systems, DBMS & Web Engineering' },
+  { id: 'math', name: 'Mathematics', icon: 'fa-calculator', color: '#0d9488', bg: '#f0fdfa', desc: 'Linear Algebra, Calculus, Discrete Mathematics & Differential Equations' },
+  { id: 'phys', name: 'Physics', icon: 'fa-atom', color: '#7c3aed', bg: '#f5f3ff', desc: 'Quantum Mechanics, Wave Optics, Electromagnetism & Solid State Physics' },
+  { id: 'chem', name: 'Chemistry', icon: 'fa-flask', color: '#ea580c', bg: '#fff7ed', desc: 'Organic Chemistry, Engineering Materials, Thermodynamics & Polymers' },
+  { id: 'eng', name: 'English', icon: 'fa-book-open', color: '#0284c7', bg: '#f0f9ff', desc: 'Professional Communication, Technical Writing, Vocabulary & Soft Skills' },
+  { id: 'ds', name: 'Data Science', icon: 'fa-chart-pie', color: '#9333ea', bg: '#faf5ff', desc: 'Machine Learning, Python, Statistical Modeling, Big Data & Visualization' },
+  { id: 'cloud', name: 'Cloud Computing', icon: 'fa-cloud', color: '#0284c7', bg: '#ecfeff', desc: 'AWS, Azure, Cloud Virtualization, Distributed Systems & Microservices' },
+  { id: 'it', name: 'Information Technology', icon: 'fa-network-wired', color: '#4f46e5', bg: '#eef2ff', desc: 'Computer Networks, Cyber Security, System Administration & Cloud DevOps' }
+];
+
+// Rich Sample Notes Library (14 preloaded academic study materials across all 8 subjects)
+const SAMPLE_NOTES = [
+  {
+    id: 'sample-1',
+    title: 'Cloud Architecture & Distributed Systems Guide',
+    subject: 'Cloud Computing',
+    semester: 'Semester 7',
+    fileType: 'PDF',
+    fileSize: '3.8 MB',
+    author: 'Prof. David Vance',
+    institution: 'School of Cloud & Distributed Systems',
+    uploadDate: '2026-10-15',
+    downloads: 412,
+    rating: 4.9,
+    description: 'In-depth coverage of AWS EC2, S3, IAM roles, Azure Resource Manager, Kubernetes clusters, load balancing algorithms, and multi-region fault tolerance patterns.',
+    topics: ['AWS Architecture', 'Virtualization', 'Docker & K8s', 'Microservices', 'High Availability'],
+    isSample: true,
+    previewContent: `CLOUD ARCHITECTURE & DISTRIBUTED SYSTEMS
+Course: Cloud Computing (CS701) | Semester 7
+
+1. EXECUTIVE OVERVIEW
+Cloud computing delivers on-demand computing servicesâ€”including servers, storage, databases, networking, software, and analyticsâ€”over the Internet ("the cloud") with pay-as-you-go pricing.
+
+2. CLOUD DEPLOYMENT & SERVICE MODELS
+â€¢ IaaS (Infrastructure as a Service): Compute resources such as AWS EC2, Google Compute Engine.
+â€¢ PaaS (Platform as a Service): Managed environments like AWS Elastic Beanstalk, Heroku.
+â€¢ SaaS (Software as a Service): Full applications like Google Workspace, Office 365.
+
+3. HIGH AVAILABILITY & FAULT TOLERANCE
+â€¢ Availability Zones (AZ) and Edge Locations.
+â€¢ Auto-scaling groups responding to CPU and traffic metrics.
+â€¢ Elastic Load Balancing (ELB) distributing incoming requests.
+
+4. CONTAINER ORCHESTRATION WITH KUBERNETES
+Pods, ReplicaSets, Services, Ingress controllers, and persistent volume claims for scalable microservices.`
+  },
+  {
+    id: 'sample-2',
+    title: 'Data Structures & Algorithms Master Notes',
+    subject: 'Computer Science',
+    semester: 'Semester 3',
+    fileType: 'PDF',
+    fileSize: '4.2 MB',
+    author: 'Alex Rivera',
+    institution: 'Department of Computer Engineering',
+    uploadDate: '2026-10-18',
+    downloads: 875,
+    rating: 4.8,
+    description: 'Comprehensive exam revision notes on Red-Black Trees, Graph Traversal (BFS/DFS), Dynamic Programming with memoization, Dijkstra Algorithm, and asymptotic complexity analysis.',
+    topics: ['Graph Theory', 'Dynamic Programming', 'Binary Trees', 'Big-O Notation'],
+    isSample: true,
+    previewContent: `DATA STRUCTURES & ALGORITHM ANALYSIS (CS302)
+
+1. ASYMPTOTIC NOTATION
+â€¢ Big-O (O): Upper bound on worst-case execution time.
+â€¢ Big-Omega (Î©): Lower bound on best-case execution time.
+â€¢ Big-Theta (Î˜): Tight asymptotic bound.
+
+2. ADVANCED TREE STRUCTURES
+â€¢ AVL Trees: Self-balancing BST where balance factor is within {-1, 0, 1}.
+â€¢ Red-Black Trees: Balanced trees ensuring O(log N) lookup and insertion.
+
+3. DYNAMIC PROGRAMMING FORMULA
+â€¢ Subproblem overlapping & optimal substructure.
+â€¢ Longest Common Subsequence (LCS): dp[i][j] = dp[i-1][j-1] + 1 if A[i]==B[j].`
+  },
+  {
+    id: 'sample-3',
+    title: 'Machine Learning & Neural Networks Handbook',
+    subject: 'Data Science',
+    semester: 'Semester 6',
+    fileType: 'PDF',
+    fileSize: '5.1 MB',
+    author: 'Dr. Sarah Lin',
+    institution: 'AI & Data Intelligence Lab',
+    uploadDate: '2026-10-20',
+    downloads: 654,
+    rating: 4.9,
+    description: 'Detailed lecture notes covering supervised vs unsupervised learning, gradient descent optimization, backpropagation in multilayer perceptrons, and Scikit-Learn pipelines.',
+    topics: ['Supervised Learning', 'Backpropagation', 'Gradient Descent', 'Scikit-Learn', 'Feature Engineering'],
+    isSample: true,
+    previewContent: `MACHINE LEARNING FUNDAMENTALS (DS601)
+
+1. SUPERVISED VS UNSUPERVISED LEARNING
+â€¢ Supervised: Labeled targets (Regression for continuous values, Classification for discrete classes).
+â€¢ Unsupervised: Discovering hidden patterns (K-Means, PCA, Hierarchical Clustering).
+
+2. GRADIENT DESCENT OPTIMIZATION
+Formula: Î¸_new = Î¸_old - Î± * âˆ‡J(Î¸)
+Where Î± is the learning rate and âˆ‡J(Î¸) represents the gradient of the loss function.
+
+3. DEEP LEARNING ARCHITECTURES
+Convolutional Neural Networks (CNN) for spatial/image data; Recurrent Neural Networks (RNN) and Transformers for sequential text processing.`
+  },
+  {
+    id: 'sample-4',
+    title: 'Relational Database Management Systems (DBMS)',
+    subject: 'Computer Science',
+    semester: 'Semester 4',
+    fileType: 'DOCX',
+    fileSize: '2.8 MB',
+    author: 'Kavita Menon',
+    institution: 'Dept of Information Science',
+    uploadDate: '2026-10-12',
+    downloads: 521,
+    rating: 4.7,
+    description: 'Relational algebra, ER to relational schema mapping, 1NF to BCNF normalization proofs, transaction management, ACID properties, and SQL query tuning.',
+    topics: ['SQL Queries', 'Normalization (1NF-BCNF)', 'ACID Properties', 'Indexing & B+ Trees'],
+    isSample: true,
+    previewContent: `DATABASE MANAGEMENT SYSTEMS (CS403)
+
+1. ACID PROPERTIES
+â€¢ Atomicity: All operations in transaction succeed or none do.
+â€¢ Consistency: Database moves from one valid state to another valid state.
+â€¢ Isolation: Concurrent transactions do not interfere with each other.
+â€¢ Durability: Once committed, state changes persist through crashes.
+
+2. NORMALIZATION PRINCIPLES
+â€¢ 1NF: Atomic values; no repeating groups.
+â€¢ 2NF: 1NF + no partial dependency on composite keys.
+â€¢ 3NF: 2NF + no transitive dependencies (non-prime -> non-prime).
+â€¢ BCNF: For every functional dependency X -> Y, X must be a super key.`
+  },
+  {
+    id: 'sample-5',
+    title: 'Engineering Mathematics III: Fourier & Laplace',
+    subject: 'Mathematics',
+    semester: 'Semester 3',
+    fileType: 'PDF',
+    fileSize: '3.4 MB',
+    author: 'Prof. R. K. Sharma',
+    institution: 'Department of Applied Mathematics',
+    uploadDate: '2026-10-08',
+    downloads: 730,
+    rating: 4.8,
+    description: 'Complete solved examples on Fourier Series expansion, Fourier Transforms, Laplace Transforms with step functions, and solving partial differential equations (PDE).',
+    topics: ['Fourier Transforms', 'Laplace Transforms', 'PDEs', 'Harmonic Analysis'],
+    isSample: true,
+    previewContent: `ENGINEERING MATHEMATICS III (MATH301)
+
+1. FOURIER SERIES EXPANSION
+f(x) = a0/2 + Î£ [an*cos(nx) + bn*sin(nx)]
+Formula for coefficients using Euler's formula over interval [-L, L].
+
+2. LAPLACE TRANSFORMS
+L{f(t)} = âˆ« [e^(-st) * f(t) dt] from 0 to âˆž
+â€¢ L{t^n} = n! / s^(n+1)
+â€¢ L{e^(at)} = 1 / (s - a)
+â€¢ First shifting theorem and inverse Laplace convolution theorem.`
+  },
+  {
+    id: 'sample-6',
+    title: 'Cloud Security, Compliance & Disaster Recovery',
+    subject: 'Cloud Computing',
+    semester: 'Semester 7',
+    fileType: 'PPT',
+    fileSize: '4.6 MB',
+    author: 'Elena Rostova',
+    institution: 'Cyber & Cloud Defense Institute',
+    uploadDate: '2026-10-22',
+    downloads: 388,
+    rating: 4.8,
+    description: 'Presentation slides on AWS Shared Responsibility Model, Identity & Access Management (IAM), zero-trust architecture, TLS 1.3 encryption, and multi-cloud DR strategies.',
+    topics: ['Cloud Security', 'IAM Roles', 'Zero Trust', 'Disaster Recovery (RTO/RPO)'],
+    isSample: true,
+    previewContent: `CLOUD SECURITY & COMPLIANCE (CC702)
+
+1. THE SHARED RESPONSIBILITY MODEL
+â€¢ Cloud Provider (AWS/Azure): Security OF the cloud (Physical data centers, hardware, hypervisors).
+â€¢ Customer: Security IN the cloud (Data encryption, IAM policies, OS patching, network firewall rules).
+
+2. ZERO TRUST ARCHITECTURE
+"Never trust, always verify." Every user and microservice must authenticate and authorize dynamically.
+
+3. DISASTER RECOVERY METRICS
+â€¢ RPO (Recovery Point Objective): Max acceptable data loss measured in time.
+â€¢ RTO (Recovery Time Objective): Max acceptable downtime before service restoration.`
+  },
+  {
+    id: 'sample-7',
+    title: 'Quantum Physics, Lasers & Fiber Optics',
+    subject: 'Physics',
+    semester: 'Semester 1',
+    fileType: 'PDF',
+    fileSize: '3.9 MB',
+    author: 'Dr. Marcus Vance',
+    institution: 'Department of Applied Physics',
+    uploadDate: '2026-09-28',
+    downloads: 489,
+    rating: 4.6,
+    description: 'Detailed introductory notes on wave-particle duality, de Broglie wavelength, 1D SchrÃ¶dinger wave equation, population inversion in lasers, and optical fiber attenuation.',
+    topics: ['Schrodinger Equation', 'Wave Mechanics', 'He-Ne Laser', 'Optical Fibers'],
+    isSample: true,
+    previewContent: `APPLIED ENGINEERING PHYSICS (PHY101)
+
+1. QUANTUM MECHANICS FUNDAMENTALS
+â€¢ De Broglie Wavelength: Î» = h / p = h / (mv)
+â€¢ Heisenberg Uncertainty Principle: Î”x * Î”p >= h / (4Ï€)
+â€¢ Time-Independent SchrÃ¶dinger Equation: (-Ä§Â²/2m) * (dÂ²Ïˆ/dxÂ²) + VÏˆ = EÏˆ
+
+2. LASER PRINCIPLES
+â€¢ Spontaneous vs Stimulated Emission.
+â€¢ Population Inversion achieved through optical or electrical pumping.
+â€¢ 3-level (Ruby) and 4-level (He-Ne) laser energy transitions.`
+  },
+  {
+    id: 'sample-8',
+    title: 'Applied Engineering Chemistry & Nanomaterials',
+    subject: 'Chemistry',
+    semester: 'Semester 1',
+    fileType: 'PPT',
+    fileSize: '5.5 MB',
+    author: 'Dr. Anita Desai',
+    institution: 'School of Chemical Sciences',
+    uploadDate: '2026-10-02',
+    downloads: 340,
+    rating: 4.5,
+    description: 'Comprehensive slides on electrochemical corrosion mechanisms, water hardness softening methods (zeolite & ion-exchange), carbon nanotubes, and conducting polymers.',
+    topics: ['Corrosion Control', 'Water Softening', 'Carbon Nanotubes', 'Spectroscopy'],
+    isSample: true,
+    previewContent: `APPLIED CHEMISTRY & NANO-ENGINEERING (CHEM102)
+
+1. CORROSION & PREVENTION
+â€¢ Galvanic and Differential Aeration Corrosion.
+â€¢ Cathodic protection: Sacrificial anode vs Impressed current method.
+
+2. ADVANCED MATERIALS
+â€¢ Carbon Nanotubes (CNTs): SWCNT vs MWCNT, electrical ballistic conduction.
+â€¢ Conducting Polymers: Polyacetylene and Polyaniline mechanisms.`
+  },
+  {
+    id: 'sample-9',
+    title: 'Computer Networks & TCP/IP Architecture',
+    subject: 'Information Technology',
+    semester: 'Semester 5',
+    fileType: 'PDF',
+    fileSize: '3.7 MB',
+    author: 'Vikram Joshi',
+    institution: 'Telecommunications & IT Dept',
+    uploadDate: '2026-10-14',
+    downloads: 615,
+    rating: 4.8,
+    description: 'OSI 7-Layer vs TCP/IP models, IPv4 subnetting formulas, distance vector vs link-state routing protocols (OSPF, BGP), TCP 3-way handshake, and DNS resolution flow.',
+    topics: ['OSI Model', 'Subnetting (CIDR)', 'Routing (OSPF, BGP)', 'TCP Congestion Control'],
+    isSample: true,
+    previewContent: `COMPUTER NETWORKING & INTERNET PROTOCOLS (IT501)
+
+1. OSI VS TCP/IP PROTOCOL SUITE
+â€¢ Application, Transport (TCP/UDP), Network (IP/ICMP), Link (Ethernet, Wi-Fi), Physical.
+â€¢ TCP 3-Way Handshake: SYN -> SYN-ACK -> ACK.
+
+2. IPV4 CIDR SUBNETTING
+Subnet masks, broadcast addresses, and host calculation: Hosts = 2^(32 - prefix) - 2.
+
+3. ROUTING PROTOCOLS
+â€¢ Distance Vector: RIP (Bellman-Ford, count to infinity issue).
+â€¢ Link State: OSPF (Dijkstra algorithm, fast convergence).`
+  },
+  {
+    id: 'sample-10',
+    title: 'Technical Communication & Professional Writing',
+    subject: 'English',
+    semester: 'Semester 2',
+    fileType: 'DOCX',
+    fileSize: '1.9 MB',
+    author: 'Claire Montgomery',
+    institution: 'Humanities & Professional Studies',
+    uploadDate: '2026-10-05',
+    downloads: 395,
+    rating: 4.7,
+    description: 'Guidelines for preparing engineering research reports, drafting formal technical proposals, executive summary structure, business emails, and oral presentation mastery.',
+    topics: ['Technical Reports', 'Executive Summaries', 'Email Etiquette', 'Presentations'],
+    isSample: true,
+    previewContent: `TECHNICAL COMMUNICATION FOR ENGINEERS (ENG201)
+
+1. PRINCIPLES OF TECHNICAL WRITING (7 Cs)
+Clarity, Conciseness, Correctness, Completeness, Concreteness, Coherence, Courtesy.
+
+2. STRUCTURE OF A FORMAL TECHNICAL REPORT
+â€¢ Transmittal Letter & Title Page.
+â€¢ Executive Summary / Abstract.
+â€¢ Introduction, Technical Methodology, Findings, Discussion.
+â€¢ Recommendations & Bibliography (IEEE format).`
+  },
+  {
+    id: 'sample-11',
+    title: 'Python for Data Analysis & Statistical Modeling',
+    subject: 'Data Science',
+    semester: 'Semester 5',
+    fileType: 'PPT',
+    fileSize: '4.1 MB',
+    author: 'Rohan Gupta',
+    institution: 'Center for Data Analytics',
+    uploadDate: '2026-10-19',
+    downloads: 512,
+    rating: 4.8,
+    description: 'Practical guide to NumPy vectorization, Pandas DataFrame manipulation, missing value imputation, exploratory data analysis (EDA), and Seaborn statistical plots.',
+    topics: ['Pandas & NumPy', 'Data Cleaning', 'Exploratory Analysis', 'Seaborn & Matplotlib'],
+    isSample: true,
+    previewContent: `PYTHON FOR DATA SCIENCE (DS502)
+
+1. NUMPY VECTORIZATION
+Avoid explicit Python loops; use broadcasting and vectorized ufuncs for 100x performance.
+
+2. PANDAS DATA WRANGLING
+â€¢ df.groupby() aggregations and multi-indexing.
+â€¢ Handling missing data: .fillna(method='ffill') vs iterative imputation.
+â€¢ Merge, Join, and Concat operations on large datasets.`
+  },
+  {
+    id: 'sample-12',
+    title: 'Cyber Security & Ethical Hacking Essentials',
+    subject: 'Information Technology',
+    semester: 'Semester 6',
+    fileType: 'DOCX',
+    fileSize: '2.5 MB',
+    author: 'Zackariah Chen',
+    institution: 'Information Assurance Group',
+    uploadDate: '2026-10-21',
+    downloads: 580,
+    rating: 4.9,
+    description: 'Understanding the OWASP Top 10 vulnerabilities (SQL Injection, XSS, CSRF), public key cryptography (RSA, ECC), firewall architectures, and penetration testing workflows.',
+    topics: ['OWASP Top 10', 'Public Key Cryptography', 'Penetration Testing', 'Network Firewalls'],
+    isSample: true,
+    previewContent: `CYBER SECURITY & DEFENSIVE COMPUTING (IT602)
+
+1. OWASP TOP 10 WEB APPLICATION SECURITY RISKS
+â€¢ Injection (SQLi, Command Injection): Mitigated via Prepared Statements / ORM.
+â€¢ Broken Authentication: Solved via MFA, secure cookie flags, and session expiration.
+â€¢ Cross-Site Scripting (XSS): Mitigated by contextual output encoding and CSP headers.
+
+2. ASYMMETRIC CRYPTOGRAPHY
+Public Key for encryption, Private Key for decryption. Diffie-Hellman Key Exchange and Digital Signatures.`
+  },
+  {
+    id: 'sample-13',
+    title: 'Discrete Mathematics & Graph Theory',
+    subject: 'Mathematics',
+    semester: 'Semester 2',
+    fileType: 'DOCX',
+    fileSize: '2.1 MB',
+    author: 'Prof. R. K. Sharma',
+    institution: 'Department of Applied Mathematics',
+    uploadDate: '2026-09-30',
+    downloads: 410,
+    rating: 4.7,
+    description: 'Set theory, propositional logic and truth tables, mathematical induction, recurrence relations, Eulerian and Hamiltonian paths, and planar graph coloring theorems.',
+    topics: ['Propositional Logic', 'Mathematical Induction', 'Graph Coloring', 'Recurrence Relations'],
+    isSample: true,
+    previewContent: `DISCRETE MATHEMATICAL STRUCTURES (MATH202)
+
+1. PROPOSITIONAL LOGIC
+â€¢ Connectives: Conjunction (âˆ§), Disjunction (âˆ¨), Implication (â†’), Biconditional (â†”).
+â€¢ Tautologies, Contradictions, and De Morganâ€™s Laws.
+
+2. GRAPH THEORY
+â€¢ Handshaking Lemma: Î£ deg(v) = 2 * |E|
+â€¢ Euler's Planar Graph Formula: V - E + F = 2
+â€¢ Four Color Theorem for planar maps.`
+  },
+  {
+    id: 'sample-14',
+    title: 'Modern Operating Systems & Kernel Architecture',
+    subject: 'Computer Science',
+    semester: 'Semester 4',
+    fileType: 'PDF',
+    fileSize: '3.6 MB',
+    author: 'Alex Rivera',
+    institution: 'Department of Computer Engineering',
+    uploadDate: '2026-10-11',
+    downloads: 695,
+    rating: 4.8,
+    description: 'Process scheduling algorithms (Round Robin, Multilevel Feedback Queue), virtual memory paging, page replacement (LRU, FIFO), deadlocks (Bankerâ€™s Algorithm), and thread synchronization.',
+    topics: ['Process Scheduling', 'Virtual Memory & Paging', 'Deadlock Detection', 'Semaphores & Mutex'],
+    isSample: true,
+    previewContent: `OPERATING SYSTEMS PRINCIPLES (CS401)
+
+1. PROCESS MANAGEMENT
+â€¢ Process Control Block (PCB), Context Switching overhead.
+â€¢ CPU Scheduling: Shortest Remaining Time First (SRTF), Multilevel Feedback Queues.
+
+2. SYNCHRONIZATION & CONCURRENCY
+â€¢ Race conditions, Critical Section problem.
+â€¢ Semaphores (wait/signal) and Mutexes.
+
+3. DEADLOCK HANDLING
+â€¢ 4 Coffman conditions: Mutual Exclusion, Hold & Wait, No Preemption, Circular Wait.
+â€¢ Deadlock avoidance using Dijkstra's Banker's Algorithm.`
+  }
+];
+
+// Open / Initialize IndexedDB
+function openDB() {
+  return new Promise((resolve, reject) => {
+    if (!window.indexedDB) {
+      console.warn('IndexedDB not supported in this browser. Falling back to memory/localStorage.');
+      resolve(null);
+      return;
+    }
+
+    const request = indexedDB.open(DB_NAME, DB_VERSION);
+
+    request.onerror = (event) => {
+      console.error('IndexedDB error:', event.target.error);
+      resolve(null); // Resolve null to prevent blocking the app
+    };
+
+    request.onsuccess = (event) => {
+      resolve(event.target.result);
+    };
+
+    request.onupgradeneeded = (event) => {
+      const db = event.target.result;
+      if (!db.objectStoreNames.contains(STORE_NAME)) {
+        db.createObjectStore(STORE_NAME, { keyPath: 'id' });
+      }
+    };
+  });
+}
+
+// Store a file blob in IndexedDB
+async function storeFileBlob(noteId, fileBlob, fileName, fileType) {
+  try {
+    const db = await openDB();
+    if (!db) return false;
+
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction([STORE_NAME], 'readwrite');
+      const store = tx.objectStore(STORE_NAME);
+      const record = {
+        id: noteId,
+        fileName: fileName,
+        fileType: fileType,
+        blob: fileBlob,
+        storedAt: new Date().toISOString()
+      };
+      const req = store.put(record);
+      req.onsuccess = () => resolve(true);
+      req.onerror = (e) => {
+        console.error('Failed to store blob in IndexedDB:', e);
+        resolve(false);
+      };
+    });
+  } catch (err) {
+    console.error('storeFileBlob exception:', err);
+    return false;
+  }
+}
+
+// Retrieve file blob from IndexedDB
+async function getFileBlob(noteId) {
+  try {
+    const db = await openDB();
+    if (!db) return null;
+
+    return new Promise((resolve) => {
+      const tx = db.transaction([STORE_NAME], 'readonly');
+      const store = tx.objectStore(STORE_NAME);
+      const req = store.get(noteId);
+      req.onsuccess = () => {
+        resolve(req.result ? req.result.blob : null);
+      };
+      req.onerror = () => resolve(null);
+    });
+  } catch (err) {
+    console.error('getFileBlob exception:', err);
+    return null;
+  }
+}
+
+// Delete file blob from IndexedDB
+async function deleteFileBlob(noteId) {
+  try {
+    const db = await openDB();
+    if (!db) return false;
+
+    return new Promise((resolve) => {
+      const tx = db.transaction([STORE_NAME], 'readwrite');
+      const store = tx.objectStore(STORE_NAME);
+      const req = store.delete(noteId);
+      req.onsuccess = () => resolve(true);
+      req.onerror = () => resolve(false);
+    });
+  } catch (err) {
+    console.error('deleteFileBlob exception:', err);
+    return false;
+  }
+}
+
+// Data Repository API
+const DB = {
+  // Initialize sample notes in localStorage if first run
+  init() {
+    if (!localStorage.getItem('portal_notes_initialized')) {
+      localStorage.setItem('portal_notes_catalog', JSON.stringify(SAMPLE_NOTES));
+      localStorage.setItem('portal_notes_initialized', 'true');
+    }
+  },
+
+  // Get all subjects
+  getSubjects() {
+    return SUBJECTS;
+  },
+
+  // Get subject details by name
+  getSubjectByName(name) {
+    return SUBJECTS.find(s => s.name.toLowerCase() === (name || '').toLowerCase()) || {
+      id: 'gen',
+      name: name || 'General',
+      icon: 'fa-graduation-cap',
+      color: '#2563eb',
+      bg: '#eff6ff',
+      desc: 'Study materials and academic resources'
+    };
+  },
+
+  // Get all notes (preloaded samples + user uploaded)
+  getAllNotes() {
+    this.init();
+    try {
+      const customNotes = JSON.parse(localStorage.getItem('portal_user_notes') || '[]');
+      const catalog = JSON.parse(localStorage.getItem('portal_notes_catalog') || JSON.stringify(SAMPLE_NOTES));
+      // Combine custom uploaded notes (first) and catalog
+      return [...customNotes, ...catalog];
+    } catch (e) {
+      console.error('Error fetching notes:', e);
+      return SAMPLE_NOTES;
+    }
+  },
+
+  // Get notes uploaded by the user specifically
+  getUserUploadedNotes() {
+    try {
+      return JSON.parse(localStorage.getItem('portal_user_notes') || '[]');
+    } catch (e) {
+      return [];
+    }
+  },
+
+  // Get a single note by ID
+  getNoteById(id) {
+    const notes = this.getAllNotes();
+    return notes.find(n => n.id === id) || null;
+  },
+
+  // Save a new user-uploaded note
+  async saveNote(noteData, fileObject) {
+    try {
+      const customNotes = this.getUserUploadedNotes();
+      const newId = 'upload-' + Date.now();
+      
+      const noteRecord = {
+        id: newId,
+        title: noteData.title.trim(),
+        subject: noteData.subject,
+        semester: noteData.semester,
+        fileType: noteData.fileType || 'PDF',
+        fileSize: noteData.fileSize || '1.5 MB',
+        fileName: noteData.fileName || 'document.pdf',
+        author: noteData.author || 'Student Contributor',
+        institution: noteData.institution || 'University Student Body',
+        uploadDate: new Date().toISOString().split('T')[0],
+        downloads: 0,
+        rating: 5.0,
+        description: noteData.description.trim(),
+        topics: noteData.topics || ['Lecture Notes', noteData.subject],
+        isSample: false,
+        previewContent: `STUDENT UPLOADED STUDY RESOURCE
+Document: ${noteData.title}
+Subject: ${noteData.subject} (${noteData.semester})
+Shared by: ${noteData.author}
+Date: ${new Date().toLocaleDateString()}
+
+DESCRIPTION & TOPIC BREAKDOWN:
+${noteData.description}
+
+Storage Information:
+â€¢ This file is stored securely inside this browser's IndexedDB and localStorage sandbox.
+â€¢ File type: ${noteData.fileType} (${noteData.fileSize}).
+â€¢ In a live cloud production system, this note would be asynchronously replicated to Amazon S3 / Azure Blob Storage.`
+      };
+
+      // Store file in IndexedDB
+      if (fileObject) {
+        await storeFileBlob(newId, fileObject, noteData.fileName, noteData.fileType);
+      }
+
+      // Save metadata in localStorage
+      customNotes.unshift(noteRecord);
+      localStorage.setItem('portal_user_notes', JSON.stringify(customNotes));
+      return { success: true, note: noteRecord };
+    } catch (err) {
+      console.error('saveNote error:', err);
+      return { success: false, error: err.message };
+    }
+  },
+
+  // Delete a user-uploaded note
+  async deleteNote(noteId) {
+    try {
+      let customNotes = this.getUserUploadedNotes();
+      customNotes = customNotes.filter(n => n.id !== noteId);
+      localStorage.setItem('portal_user_notes', JSON.stringify(customNotes));
+      await deleteFileBlob(noteId);
+      return true;
+    } catch (e) {
+      console.error('deleteNote error:', e);
+      return false;
+    }
+  },
+
+  // Record a download increment
+  recordDownload(noteId) {
+    try {
+      // Check user notes first
+      let userNotes = this.getUserUploadedNotes();
+      let index = userNotes.findIndex(n => n.id === noteId);
+      if (index !== -1) {
+        userNotes[index].downloads = (userNotes[index].downloads || 0) + 1;
+        localStorage.setItem('portal_user_notes', JSON.stringify(userNotes));
+        return userNotes[index].downloads;
+      }
+
+      // Check sample catalog
+      let catalog = JSON.parse(localStorage.getItem('portal_notes_catalog') || JSON.stringify(SAMPLE_NOTES));
+      index = catalog.findIndex(n => n.id === noteId);
+      if (index !== -1) {
+        catalog[index].downloads = (catalog[index].downloads || 0) + 1;
+        localStorage.setItem('portal_notes_catalog', JSON.stringify(catalog));
+        return catalog[index].downloads;
+      }
+    } catch (e) {
+      console.error('recordDownload error:', e);
+    }
+    return 1;
+  },
+
+  // Generate or retrieve downloadable file blob
+  async downloadNoteFile(note) {
+    this.recordDownload(note.id);
+
+    // If user-uploaded note with blob in IndexedDB, download that original blob
+    if (!note.isSample) {
+      const storedBlob = await getFileBlob(note.id);
+      if (storedBlob) {
+        this.triggerBrowserDownload(storedBlob, note.fileName || `${note.title}.${(note.fileType || 'pdf').toLowerCase()}`);
+        return;
+      }
+    }
+
+    // For sample notes (or fallback), generate a clean, real academic study material text/pdf-like file
+    const fileContent = `================================================================================
+STUDENT NOTES SHARING PORTAL - ACADEMIC STUDY MATERIAL
+================================================================================
+Title:       ${note.title}
+Subject:     ${note.subject}
+Semester:    ${note.semester}
+File Type:   ${note.fileType}
+Contributed: ${note.author} (${note.institution || 'Academic Portal'})
+Upload Date: ${note.uploadDate}
+Downloads:   ${note.downloads}
+
+--------------------------------------------------------------------------------
+EXECUTIVE SUMMARY & COURSE OUTLINE
+--------------------------------------------------------------------------------
+${note.description}
+
+--------------------------------------------------------------------------------
+CORE STUDY TOPICS & EXAMINATION REVISION
+--------------------------------------------------------------------------------
+${(note.topics || []).map(t => 'â€¢ ' + t).join('\n')}
+
+--------------------------------------------------------------------------------
+DETAILED NOTES & LECTURE TRANSCRIPT
+--------------------------------------------------------------------------------
+${note.previewContent || 'Comprehensive lecture notes curated for semester examination revision.'}
+
+================================================================================
+Cloud Computing Academic Project Demonstration
+Student Notes Sharing Portal - Frontend Architecture Demo
+Generated from Client-Side Persistence Engine (LocalStorage & IndexedDB)
+================================================================================`;
+
+    const mimeTypes = {
+      'PDF': 'application/pdf',
+      'DOCX': 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+      'PPT': 'application/vnd.ms-powerpoint',
+      'PPTX': 'application/vnd.openxmlformats-officedocument.presentationml.presentation'
+    };
+
+    const ext = (note.fileType || 'txt').toLowerCase();
+    const safeTitle = note.title.replace(/[^a-zA-Z0-9_-]/g, '_');
+    const filename = `${safeTitle}.${ext === 'pdf' ? 'txt' : ext}`; // Standard readable text container to ensure universal viewer compatibility
+
+    const blob = new Blob([fileContent], { type: 'text/plain;charset=utf-8' });
+    this.triggerBrowserDownload(blob, filename);
+  },
+
+  // Trigger browser download via anchor
+  triggerBrowserDownload(blob, filename) {
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(() => {
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }, 200);
+  },
+
+  // Calculate platform statistics
+  getStats() {
+    const notes = this.getAllNotes();
+    const subjects = this.getSubjects();
+    const totalNotes = notes.length;
+    const totalSubjects = subjects.length;
+    
+    // Total downloads
+    const totalDownloads = notes.reduce((sum, n) => sum + (n.downloads || 0), 0);
+    
+    // Unique contributors
+    const contributors = new Set(notes.map(n => n.author)).size;
+
+    return {
+      totalNotes,
+      totalSubjects,
+      totalDownloads,
+      totalContributors: Math.max(contributors, 12),
+      userUploadsCount: this.getUserUploadedNotes().length
+    };
+  }
+};
+
+// Initialize DB on script load
+DB.init();
+
+/**
+ * Student Notes Sharing Portal - Authentication Module (auth.js)
+ * Implements demo authentication, registration, session persistence,
+ * and user profile display across all 4 portal pages.
+ */
+
+// Default Demo Student Account
+const DEFAULT_DEMO_USER = {
+  id: 'user-demo-001',
+  name: 'Alex Johnson',
+  email: 'student@demo.edu',
+  password: 'password123',
+  department: 'Computer Science',
+  semester: 'Semester 6',
+  studentId: 'STU-2026-8942',
+  avatar: 'AJ',
+  joinedDate: '2026-08-15'
+};
+
+const Auth = {
+  // Initialize user registry in localStorage
+  init() {
+    let users = [];
+    try {
+      users = JSON.parse(localStorage.getItem('portal_users') || '[]');
+    } catch (e) {
+      users = [];
+    }
+
+    // Ensure default demo user exists
+    if (!users.some(u => u.email.toLowerCase() === DEFAULT_DEMO_USER.email.toLowerCase())) {
+      users.push(DEFAULT_DEMO_USER);
+      localStorage.setItem('portal_users', JSON.stringify(users));
+    }
+
+    // Check remember me session persistence
+    const savedEmail = localStorage.getItem('portal_remember_email');
+    if (savedEmail) {
+      const emailInput = document.getElementById('loginEmail');
+      const rememberCheckbox = document.getElementById('rememberMe');
+      if (emailInput) emailInput.value = savedEmail;
+      if (rememberCheckbox) rememberCheckbox.checked = true;
+    }
+  },
+
+  // Get currently logged-in user
+  getCurrentUser() {
+    try {
+      const stored = localStorage.getItem('portal_current_user') || sessionStorage.getItem('portal_current_user');
+      if (stored) {
+        return JSON.parse(stored);
+      }
+    } catch (e) {
+      console.error('Error reading current user:', e);
+    }
+    return null;
+  },
+
+  // Check if user is authenticated
+  isAuthenticated() {
+    return this.getCurrentUser() !== null;
+  },
+
+  // Login handler
+  login(email, password, rememberMe = false) {
+    this.init();
+    const cleanEmail = (email || '').trim().toLowerCase();
+    const cleanPass = (password || '').trim();
+
+    if (!cleanEmail || !cleanPass) {
+      return { success: false, message: 'Please enter both email address and password.' };
+    }
+
+    const users = JSON.parse(localStorage.getItem('portal_users') || '[]');
+    const user = users.find(u => u.email.toLowerCase() === cleanEmail);
+
+    if (!user) {
+      return { success: false, message: 'No student account found with this email. Try demo credentials or register!' };
+    }
+
+    if (user.password !== cleanPass) {
+      return { success: false, message: 'Incorrect password. Try "password123" for demo account.' };
+    }
+
+    // Prepare session data (exclude raw password for clean object)
+    const sessionUser = {
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      department: user.department || 'Computer Science',
+      semester: user.semester || 'Semester 6',
+      studentId: user.studentId || 'STU-' + Math.floor(1000 + Math.random() * 9000),
+      avatar: this.getInitials(user.name)
+    };
+
+    if (rememberMe) {
+      localStorage.setItem('portal_current_user', JSON.stringify(sessionUser));
+      localStorage.setItem('portal_remember_email', cleanEmail);
+    } else {
+      sessionStorage.setItem('portal_current_user', JSON.stringify(sessionUser));
+      localStorage.removeItem('portal_remember_email');
+    }
+
+    return { success: true, user: sessionUser };
+  },
+
+  // Register a new student
+  register(userData) {
+    this.init();
+    const name = (userData.name || '').trim();
+    const email = (userData.email || '').trim().toLowerCase();
+    const password = (userData.password || '').trim();
+    const department = userData.department || 'Computer Science';
+    const semester = userData.semester || 'Semester 1';
+
+    if (!name || name.length < 2) {
+      return { success: false, message: 'Please provide your full legal or student name.' };
+    }
+
+    // Basic email regex
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return { success: false, message: 'Please provide a valid email address (e.g., student@university.edu).' };
+    }
+
+    if (!password || password.length < 6) {
+      return { success: false, message: 'Password must be at least 6 characters long.' };
+    }
+
+    const users = JSON.parse(localStorage.getItem('portal_users') || '[]');
+    if (users.some(u => u.email.toLowerCase() === email)) {
+      return { success: false, message: 'An account with this email already exists. Please log in.' };
+    }
+
+    const newUser = {
+      id: 'user-' + Date.now(),
+      name: name,
+      email: email,
+      password: password,
+      department: department,
+      semester: semester,
+      studentId: 'STU-' + Math.floor(1000 + Math.random() * 9000),
+      avatar: this.getInitials(name),
+      joinedDate: new Date().toISOString().split('T')[0]
+    };
+
+    users.push(newUser);
+    localStorage.setItem('portal_users', JSON.stringify(users));
+
+    // Auto-login registered user
+    localStorage.setItem('portal_current_user', JSON.stringify({
+      id: newUser.id,
+      name: newUser.name,
+      email: newUser.email,
+      department: newUser.department,
+      semester: newUser.semester,
+      studentId: newUser.studentId,
+      avatar: newUser.avatar
+    }));
+
+    return { success: true, user: newUser };
+  },
+
+  // Logout
+  logout() {
+    localStorage.removeItem('portal_current_user');
+    sessionStorage.removeItem('portal_current_user');
+    window.location.href = 'index.html';
+  },
+
+  // Auto-fill demo credentials helper
+  fillDemoCredentials() {
+    const emailInput = document.getElementById('loginEmail');
+    const passwordInput = document.getElementById('loginPassword');
+    const rememberCheckbox = document.getElementById('rememberMe');
+
+    if (emailInput && passwordInput) {
+      emailInput.value = DEFAULT_DEMO_USER.email;
+      passwordInput.value = DEFAULT_DEMO_USER.password;
+      if (rememberCheckbox) rememberCheckbox.checked = true;
+      this.showToast('Demo student credentials filled! Click "Sign In to Portal" to enter.', 'info');
+    }
+  },
+
+  // Helper to generate initials for avatar
+  getInitials(name) {
+    if (!name) return 'ST';
+    const parts = name.trim().split(' ');
+    if (parts.length >= 2) {
+      return (parts[0][0] + parts[1][0]).toUpperCase();
+    }
+    return name.slice(0, 2).toUpperCase();
+  },
+
+  // Route Guard: Call on protected pages (dashboard.html, notes.html, upload.html)
+  requireAuth() {
+    const user = this.getCurrentUser();
+    if (!user) {
+      // If not logged in, redirect to login page
+      sessionStorage.setItem('portal_redirect_notice', 'Please sign in or use the demo student account to access this page.');
+      window.location.href = 'index.html';
+      return null;
+    }
+    return user;
+  },
+
+  // Check login page status (if already logged in, show banner or allow fast switch)
+  checkLoginPage() {
+    const user = this.getCurrentUser();
+    const notice = sessionStorage.getItem('portal_redirect_notice');
+    if (notice) {
+      this.showToast(notice, 'warning');
+      sessionStorage.removeItem('portal_redirect_notice');
+    }
+
+    const loggedInBanner = document.getElementById('alreadyLoggedInBanner');
+    if (loggedInBanner && user) {
+      loggedInBanner.style.display = 'block';
+      const nameSpan = document.getElementById('loggedInUserName');
+      if (nameSpan) nameSpan.textContent = user.name;
+    }
+  },
+
+  // Sync navigation bar with active user details
+  updateNavbar() {
+    const user = this.getCurrentUser();
+    const navUserContainer = document.getElementById('navUserSection');
+    if (!navUserContainer) return;
+
+    if (user) {
+      navUserContainer.innerHTML = `
+        <div class="user-profile-menu">
+          <div class="user-avatar" title="${user.name}">
+            <span>${user.avatar}</span>
+          </div>
+          <div class="user-meta">
+            <span class="user-name">${user.name}</span>
+            <span class="user-dept">${user.semester} â€¢ ${user.department}</span>
+          </div>
+          <button class="btn btn-outline-danger btn-sm logout-btn" onclick="Auth.logout()" title="Sign Out">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            <span class="d-none d-md-inline">Logout</span>
+          </button>
+        </div>
+      `;
+    } else {
+      navUserContainer.innerHTML = `
+        <a href="index.html" class="btn btn-primary btn-sm">
+          <i class="fa-solid fa-right-to-bracket"></i> Sign In
+        </a>
+      `;
+    }
+  },
+
+  // Global Toast Notification Helper
+  showToast(message, type = 'success') {
+    let toastContainer = document.getElementById('toastContainer');
+    if (!toastContainer) {
+      toastContainer = document.createElement('div');
+      toastContainer.id = 'toastContainer';
+      toastContainer.className = 'toast-container';
+      document.body.appendChild(toastContainer);
+    }
+
+    const toast = document.createElement('div');
+    toast.className = `custom-toast custom-toast-${type}`;
+
+    let iconClass = 'fa-circle-check';
+    if (type === 'error') iconClass = 'fa-circle-xmark';
+    if (type === 'warning') iconClass = 'fa-triangle-exclamation';
+    if (type === 'info') iconClass = 'fa-circle-info';
+
+    toast.innerHTML = `
+      <div class="toast-content">
+        <i class="fa-solid ${iconClass}"></i>
+        <span class="toast-text">${message}</span>
+      </div>
+      <button class="toast-close" onclick="this.parentElement.remove()">&times;</button>
+    `;
+
+    toastContainer.appendChild(toast);
+
+    // Auto dismiss after 4 seconds
+    setTimeout(() => {
+      toast.classList.add('fade-out');
+      setTimeout(() => {
+        if (toast.parentElement) toast.remove();
+      }, 300);
+    }, 4000);
+  }
+};
+
+// Auto-run on load
+document.addEventListener('DOMContentLoaded', () => {
+  Auth.init();
+});
+
+/**
+ * Student Notes Sharing Portal - Dashboard Module (dashboard.js)
+ * Manages dashboard metrics, subject cards rendering, recent notes,
+ * popular study materials, and cloud computing academic presentation.
+ */
+
+document.addEventListener('DOMContentLoaded', () => {
+  // 1. Authentication check
+  const currentUser = Auth.getCurrentUser();
+  if (!currentUser) {
+    // If not signed in, set guest greeting or prompt
+    const welcomeName = document.getElementById('studentWelcomeName');
+    if (welcomeName) welcomeName.textContent = 'Student Explorer';
+  } else {
+    const welcomeName = document.getElementById('studentWelcomeName');
+    const welcomeDept = document.getElementById('studentWelcomeDept');
+    if (welcomeName) welcomeName.textContent = currentUser.name;
+    if (welcomeDept) welcomeDept.textContent = `${currentUser.department} â€¢ ${currentUser.semester}`;
+  }
+
+  // 2. Update navigation bar
+  Auth.updateNavbar();
+
+  // 3. Render Metrics & Counters
+  renderDashboardStats();
+
+  // 4. Render 8 Subject Category Cards
+  renderSubjectCards();
+
+  // 5. Render Recently Uploaded & Popular Notes
+  renderRecentAndPopularNotes();
+
+  // 6. Bind Search Bar
+  setupDashboardSearch();
+});
+
+// Render Dynamic Stats
+function renderDashboardStats() {
+  const stats = DB.getStats();
+
+  const totalNotesElem = document.getElementById('statTotalNotes');
+  const totalSubjectsElem = document.getElementById('statTotalSubjects');
+  const totalDownloadsElem = document.getElementById('statTotalDownloads');
+  const totalContributorsElem = document.getElementById('statTotalContributors');
+
+  if (totalNotesElem) totalNotesElem.textContent = stats.totalNotes;
+  if (totalSubjectsElem) totalSubjectsElem.textContent = stats.totalSubjects;
+  if (totalDownloadsElem) totalDownloadsElem.textContent = stats.totalDownloads.toLocaleString();
+  if (totalContributorsElem) totalContributorsElem.textContent = stats.totalContributors;
+}
+
+// Render 8 Subject Cards with live note counts
+function renderSubjectCards() {
+  const subjects = DB.getSubjects();
+  const allNotes = DB.getAllNotes();
+  const container = document.getElementById('subjectsGrid');
+  if (!container) return;
+
+  container.innerHTML = subjects.map(subject => {
+    // Count notes for this subject
+    const count = allNotes.filter(n => n.subject.toLowerCase() === subject.name.toLowerCase()).length;
+
+    return `
+      <a href="notes.html?subject=${encodeURIComponent(subject.name)}" class="subject-card" title="Explore ${subject.name} notes">
+        <div class="subject-card-top">
+          <div class="subject-icon" style="background-color: ${subject.bg}; color: ${subject.color};">
+            <i class="fa-solid ${subject.icon}"></i>
+          </div>
+          <span class="badge" style="background-color: ${subject.bg}; color: ${subject.color}; font-weight: 700;">
+            ${count} ${count === 1 ? 'Note' : 'Notes'}
+          </span>
+        </div>
+        <div class="subject-card-body">
+          <h3>${subject.name}</h3>
+          <p>${subject.desc}</p>
+        </div>
+        <div class="subject-card-footer">
+          <span>Explore Library</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </div>
+      </a>
+    `;
+  }).join('');
+}
+
+// Render Recent Notes (top 4 latest) and Popular Study Materials (top 4 by downloads)
+function renderRecentAndPopularNotes() {
+  const allNotes = DB.getAllNotes();
+
+  // Sort by date / index for recent
+  const recentNotes = [...allNotes].slice(0, 4);
+
+  // Sort by downloads descending for popular
+  const popularNotes = [...allNotes].sort((a, b) => (b.downloads || 0) - (a.downloads || 0)).slice(0, 4);
+
+  const recentContainer = document.getElementById('recentNotesGrid');
+  const popularContainer = document.getElementById('popularNotesGrid');
+
+  if (recentContainer) {
+    recentContainer.innerHTML = recentNotes.map(n => createNoteCardHTML(n)).join('');
+  }
+
+  if (popularContainer) {
+    popularContainer.innerHTML = popularNotes.map(n => createNoteCardHTML(n)).join('');
+  }
+}
+
+// Generate Note Card HTML
+function createNoteCardHTML(note) {
+  const badgeClass = note.fileType === 'PDF' ? 'badge-pdf' : (note.fileType === 'DOCX' ? 'badge-docx' : 'badge-ppt');
+  const fileIcon = note.fileType === 'PDF' ? 'fa-file-pdf' : (note.fileType === 'DOCX' ? 'fa-file-word' : 'fa-file-powerpoint');
+
+  return `
+    <div class="note-card">
+      <div>
+        <div class="note-card-header">
+          <span class="badge badge-purple">${note.subject}</span>
+          <span class="badge ${badgeClass}"><i class="fa-solid ${fileIcon}"></i> ${note.fileType} â€¢ ${note.fileSize || '2 MB'}</span>
+        </div>
+        <h4 class="note-title">${note.title}</h4>
+        <p class="note-description">${note.description}</p>
+        <div class="note-topics">
+          ${(note.topics || []).slice(0, 3).map(t => `<span class="topic-tag">${t}</span>`).join('')}
+        </div>
+      </div>
+      <div>
+        <div class="note-card-meta">
+          <div class="note-uploader">
+            <i class="fa-solid fa-user-graduate" style="color: var(--primary);"></i>
+            <span>${note.author}</span>
+          </div>
+          <div>
+            <i class="fa-solid fa-download" style="color: var(--text-light); margin-right: 0.25rem;"></i>
+            <span>${note.downloads || 0}</span>
+          </div>
+        </div>
+        <div class="note-card-actions">
+          <button class="btn btn-secondary btn-sm" onclick="openNotePreview('${note.id}')">
+            <i class="fa-solid fa-eye"></i> Preview
+          </button>
+          <button class="btn btn-primary btn-sm" onclick="downloadNoteItem('${note.id}')">
+            <i class="fa-solid fa-download"></i> Download
+          </button>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+// Handle Search Bar in Hero
+function setupDashboardSearch() {
+  const searchInput = document.getElementById('heroSearchInput');
+  const searchBtn = document.getElementById('heroSearchBtn');
+
+  const executeSearch = () => {
+    const q = (searchInput.value || '').trim();
+    if (q) {
+      window.location.href = `notes.html?search=${encodeURIComponent(q)}`;
+    } else {
+      window.location.href = 'notes.html';
+    }
+  };
+
+  if (searchBtn) {
+    searchBtn.addEventListener('click', executeSearch);
+  }
+
+  if (searchInput) {
+    searchInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        executeSearch();
+      }
+    });
+  }
+}
+
+// Global Note Action Handlers (preview & download)
+window.openNotePreview = function(noteId) {
+  const note = DB.getNoteById(noteId);
+  if (!note) return;
+
+  const modalOverlay = document.getElementById('previewModalOverlay');
+  const modalTitle = document.getElementById('modalNoteTitle');
+  const modalSubject = document.getElementById('modalNoteSubject');
+  const modalSemester = document.getElementById('modalNoteSemester');
+  const modalType = document.getElementById('modalNoteType');
+  const modalAuthor = document.getElementById('modalNoteAuthor');
+  const modalBody = document.getElementById('modalPreviewContent');
+  const modalDownloadBtn = document.getElementById('modalDownloadBtn');
+
+  if (modalTitle) modalTitle.textContent = note.title;
+  if (modalSubject) modalSubject.textContent = note.subject;
+  if (modalSemester) modalSemester.textContent = note.semester;
+  if (modalType) modalType.textContent = `${note.fileType} (${note.fileSize || '2 MB'})`;
+  if (modalAuthor) modalAuthor.textContent = `${note.author} â€¢ ${note.institution || 'Verified Student'}`;
+  if (modalBody) modalBody.textContent = note.previewContent || note.description;
+
+  if (modalDownloadBtn) {
+    modalDownloadBtn.onclick = () => {
+      downloadNoteItem(note.id);
+    };
+  }
+
+  if (modalOverlay) {
+    modalOverlay.classList.add('open');
+  }
+};
+
+window.closeNotePreview = function() {
+  const modalOverlay = document.getElementById('previewModalOverlay');
+  if (modalOverlay) {
+    modalOverlay.classList.remove('open');
+  }
+};
+
+window.downloadNoteItem = async function(noteId) {
+  const note = DB.getNoteById(noteId);
+  if (!note) return;
+
+  Auth.showToast(`Starting download: "${note.title}"...`, 'info');
+  await DB.downloadNoteFile(note);
+  renderDashboardStats();
+  renderRecentAndPopularNotes();
+  Auth.showToast(`Downloaded successfully! File saved to your device.`, 'success');
+};
+
+</script>
 </body>
 </html>
+
+
